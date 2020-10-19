@@ -1,10 +1,9 @@
 package controller;
 
 import javafx.event.ActionEvent;
-import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
-import javafx.stage.Screen;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 import view.View;
 
 public class Controller {
@@ -15,13 +14,22 @@ public class Controller {
 
     public void passControl(Controller controller, ActionEvent e){
         View newView = controller.getView();
+        Window window = ((Node)e.getSource()).getScene().getWindow();
+        
+        double height = window.getHeight();
+        double width = window.getWidth();
+        double x = window.getX();
+        double y = window.getY();
+
         Stage primaryStage = (Stage)((Node)e.getSource()).getScene().getWindow();
         primaryStage.setScene(newView.getScene());
 
-        Screen screen = Screen.getPrimary();
-        Rectangle2D bounds = screen.getVisualBounds();
-        primaryStage.setWidth(bounds.getWidth());
-        primaryStage.setHeight(bounds.getHeight());
+        primaryStage.setWidth(width);
+        primaryStage.setHeight(height);
+        primaryStage.setX(x);
+        primaryStage.setY(y);
+        primaryStage.setMaximized(true);
+
     }
 
     /**
@@ -34,11 +42,11 @@ public class Controller {
     }
 
     /**
-     * Setter for gui
+     * Setter for View
      *
-     * @param gui - gui
+     * @param view - view
      */
-    public void setGui(View gui) {
+    public void setView(View view) {
         this.view = view;
     }
 
