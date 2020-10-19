@@ -25,9 +25,6 @@ public class StartupView extends View{
         horizontalLayout.getChildren().addAll(adminButton, customerButton);
         horizontalLayout.setAlignment(Pos.CENTER);
         layout.getChildren().addAll(horizontalLayout);
-
-
-
     }
 
     /**
