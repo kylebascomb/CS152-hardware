@@ -22,7 +22,6 @@ public class Controller {
         Rectangle2D bounds = screen.getVisualBounds();
         primaryStage.setWidth(bounds.getWidth());
         primaryStage.setHeight(bounds.getHeight());
-        primaryStage.setMaximized(true);
     }
 
     /**
