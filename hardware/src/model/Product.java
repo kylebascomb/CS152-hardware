@@ -5,12 +5,13 @@ import java.io.Serializable;
 public class Product implements Serializable {
 
 
-    public Product(String name, float price, int quantity, String description, String type) {
+    public Product(String name, float price, int quantity, String description, String type, int productId) {
         this.name = name;
         this.price = price;
         this.quantity = quantity;
         this.description = description;
         this.type = type;
+        this.productId = productId;
     }
 
     /**
