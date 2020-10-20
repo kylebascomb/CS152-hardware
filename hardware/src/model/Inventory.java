@@ -20,18 +20,27 @@ public class Inventory implements Serializable {
 
 
 	public void addProduct(Product product){
-		products.add(product);
+		products.add(product.clone());
 	}
 	
 	
 	public void addProduct(Product product, int amount) {
-		int index = products.indexOf(product);
+		int index = -1;
+		int id = product.getProductId();
+		for(int i = 0; i < products.size(); i++) {
+			if(products.get(i).getProductId() == id) {
+				index = i;
+				i = products.size();
+			}
+		}
 		if(index > -1) {
-			product.setQuantity(product.getQuantity() + amount);
+			Product p = products.get(index);
+			p.setQuantity(p.getQuantity() + amount);
 		}
 		else {
-			product.setQuantity(amount);
-			addProduct(product);
+			Product temp = product.clone();
+			temp.setQuantity(amount);
+			addProduct(temp);
 		}
 	}
 
@@ -42,10 +51,18 @@ public class Inventory implements Serializable {
 	
 	
 	public boolean removeProduct(Product product, int amount) {
-		int index = products.indexOf(product);
+		int index = -1;
+		int id = product.getProductId();
+		for(int i = 0; i < products.size(); i++) {
+			if(products.get(i).getProductId() == id) {
+				index = i;
+				i = products.size();
+			}
+		}
 		if(index > -1) {
-			if(product.getQuantity() >= amount) {
-				product.setQuantity(product.getQuantity() - amount);
+			Product p = products.get(index);
+			if(p.getQuantity() >= amount) {
+				p.setQuantity(p.getQuantity() - amount);
 				return true;
 			}
 			return false;
