@@ -13,12 +13,15 @@ public class CustomerView extends View{
     public void initComponents(){
         layout = new HBox();
         backButton = new Button("Back");
+        addButton = new Button("Add to Cart");
+        removeButton = new Button("Remove from Cart");
         productTable = new ProductTableView();
+        cartTable = new CartTableView();
         scene = new Scene(layout);
     }
 
     public void layoutComponents(){
-        layout.getChildren().addAll(productTable, backButton);
+        layout.getChildren().addAll(productTable, cartTable, addButton, removeButton, backButton);
     }
 
     /**
@@ -56,6 +59,24 @@ public class CustomerView extends View{
     public void setBackButton(Button backButton) {
         this.backButton = backButton;
     }
+    
+    /**
+     * Getter for addButton
+     *
+     * @return addButton
+     */
+    public Button getAddButton() {
+        return addButton;
+    }
+    
+    /**
+     * Getter for removeButton
+     *
+     * @return removeButton
+     */
+    public Button getRemoveButton() {
+        return removeButton;
+    }
 
 
     /**
@@ -75,8 +96,20 @@ public class CustomerView extends View{
     public void setProductTable(ProductTableView productTable) {
         this.productTable = productTable;
     }
+    
+    /**
+     * Getter for cartTable
+     *
+     * @return cartTable
+     */
+    public ProductTableView getCartTable() {
+        return cartTable;
+    }
 
     private HBox layout;
     private Button backButton;
+    private Button addButton;
+    private Button removeButton;
     private ProductTableView productTable;
+    private CartTableView cartTable;
 }

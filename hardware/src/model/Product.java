@@ -121,6 +121,10 @@ public class Product implements Serializable {
     public void setType(String type) {
         this.type = type;
     }
+    
+    public Product clone() {
+    	return new Product(name, price, quantity, description, type, productId);
+    }
 
     private String name;
     private float price;
