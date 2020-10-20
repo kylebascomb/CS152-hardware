@@ -16,11 +16,12 @@ public class AdminView extends View{
         layout = new HBox();
         backButton = new Button("Back");
         addProductBox = new AddProductBox();
+        productTable = new ProductTableView();
         scene = new Scene(layout);
     }
 
     public void layoutComponents(){
-        layout.getChildren().addAll(addProductBox, backButton);
+        layout.getChildren().addAll(productTable, addProductBox,  backButton);
     }
 
 
@@ -78,7 +79,26 @@ public class AdminView extends View{
         this.addProductBox = addProductBox;
     }
 
+    /**
+     * Getter for productTable
+     *
+     * @return productTable
+     */
+    public ProductTableView getProductTable() {
+        return productTable;
+    }
+
+    /**
+     * Setter for productTable
+     *
+     * @param productTable - productTable
+     */
+    public void setProductTable(ProductTableView productTable) {
+        this.productTable = productTable;
+    }
+
     private HBox layout;
     private Button backButton;
     private AddProductBox addProductBox;
+    private ProductTableView productTable;
 }
