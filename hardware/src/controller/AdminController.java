@@ -14,6 +14,7 @@ public class AdminController extends Controller {
         view = new AdminView();
         adminView = (AdminView)view;
 
+        initTable();
         initControllers();
 
         //TESTING
@@ -40,6 +41,8 @@ public class AdminController extends Controller {
             adminView.getAddProductBox().getPriceField().clear();
             adminView.getAddProductBox().getQuantityField().clear();
             adminView.getAddProductBox().getDescriptionField().clear();
+
+            adminView.getProductTable().setInventory(inventory);
         });
     }
 
@@ -48,6 +51,15 @@ public class AdminController extends Controller {
         Float truePrice = Float.parseFloat(price);
         Integer trueQuantity = Integer.parseInt(quantity);
         inventory.addProduct(new Product(name, truePrice, trueQuantity, description, type));
+    }
+
+    public void initTable(){
+        adminView.getProductTable().setInventory(inventory);
+        adminView.getProductTable().addNameColumn();
+        adminView.getProductTable().addPriceColumn();
+        adminView.getProductTable().addTypeColumn();
+        adminView.getProductTable().addQuantityColumn();
+        adminView.getProductTable().addDescriptionColumn();
     }
 
 

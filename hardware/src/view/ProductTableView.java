@@ -35,12 +35,21 @@ public class ProductTableView extends TableView {
 
         nameColumn = new TableColumn<>("Product");
         priceColumn = new TableColumn<>("Price");
+        typeColumn = new TableColumn<>("Type");
+        quantityColumn = new TableColumn<>("Quantity");
+        descriptionColumn = new TableColumn<>("Description");
 
         nameColumn.setMinWidth(20);
         priceColumn.setMinWidth(20);
+        typeColumn.setMinWidth(20);
+        quantityColumn.setMinWidth(20);
+        descriptionColumn.setMinWidth(20);
 
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         priceColumn.setCellValueFactory(new PropertyValueFactory<>("price"));
+        typeColumn.setCellValueFactory(new PropertyValueFactory<>("type"));
+        quantityColumn.setCellValueFactory(new PropertyValueFactory<>("quantity"));
+        descriptionColumn.setCellValueFactory(new PropertyValueFactory<>("description"));
 
 
         this.getColumns().add(titleColumn);
@@ -63,6 +72,19 @@ public class ProductTableView extends TableView {
     public void addPriceColumn(){
         titleColumn.getColumns().add(priceColumn);
     }
+    
+    public void addTypeColumn(){
+        titleColumn.getColumns().add(typeColumn);
+    }
+    
+    public void addQuantityColumn(){
+        titleColumn.getColumns().add(quantityColumn);
+    }
+
+    public void addDescriptionColumn(){
+        titleColumn.getColumns().add(descriptionColumn);
+    }
+    
 
 
     /**
@@ -75,6 +97,18 @@ public class ProductTableView extends TableView {
 
     public void removePriceColumn(){
         titleColumn.getColumns().remove(priceColumn);
+    }
+
+    public void removeTypeColumn(){
+        titleColumn.getColumns().remove(typeColumn);
+    }
+
+    public void removeQuantityColumn(){
+        titleColumn.getColumns().remove(quantityColumn);
+    }
+
+    public void removeDescriptionColumn(){
+        titleColumn.getColumns().remove(descriptionColumn);
     }
 
     /**
@@ -100,7 +134,12 @@ public class ProductTableView extends TableView {
     private Inventory inventory;
     private ObservableList<Product> observableInventory;
     private TableColumn<Product, String> titleColumn;
+    
     private TableColumn<Product, String> nameColumn;
     private TableColumn<Product, Float> priceColumn;
+    private TableColumn<Product, String> typeColumn;
+    private TableColumn<Product, Integer> quantityColumn;
+    private TableColumn<Product, String> descriptionColumn;
+
 
 }
