@@ -34,7 +34,7 @@ public class StartupController extends Controller{
         });
 
         startupView.getCustomerButton().setOnAction(e ->{
-            passControl(new CustomerController(), e);
+            passControl(new CustomerController(inventory), e);
         });
 
         startupView.getSaveButton().setOnAction(e ->{

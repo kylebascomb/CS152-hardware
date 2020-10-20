@@ -13,11 +13,12 @@ public class CustomerView extends View{
     public void initComponents(){
         layout = new HBox();
         backButton = new Button("Back");
+        productTable = new ProductTableView();
         scene = new Scene(layout);
     }
 
     public void layoutComponents(){
-        layout.getChildren().addAll(backButton);
+        layout.getChildren().addAll(productTable, backButton);
     }
 
     /**
@@ -56,6 +57,26 @@ public class CustomerView extends View{
         this.backButton = backButton;
     }
 
+
+    /**
+     * Getter for productTable
+     *
+     * @return productTable
+     */
+    public ProductTableView getProductTable() {
+        return productTable;
+    }
+
+    /**
+     * Setter for productTable
+     *
+     * @param productTable - productTable
+     */
+    public void setProductTable(ProductTableView productTable) {
+        this.productTable = productTable;
+    }
+
     private HBox layout;
     private Button backButton;
+    private ProductTableView productTable;
 }
