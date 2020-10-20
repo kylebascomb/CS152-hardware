@@ -34,18 +34,21 @@ public class ProductTableView extends TableView {
         titleColumn = new TableColumn<>();
 
         nameColumn = new TableColumn<>("Product");
+        productIdColumn = new TableColumn<>("ID");
         priceColumn = new TableColumn<>("Price");
         typeColumn = new TableColumn<>("Type");
         quantityColumn = new TableColumn<>("Quantity");
         descriptionColumn = new TableColumn<>("Description");
 
         nameColumn.setMinWidth(20);
+        productIdColumn.setMinWidth(20);
         priceColumn.setMinWidth(20);
         typeColumn.setMinWidth(20);
         quantityColumn.setMinWidth(20);
         descriptionColumn.setMinWidth(20);
 
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+        productIdColumn.setCellValueFactory(new PropertyValueFactory<>("productId"));
         priceColumn.setCellValueFactory(new PropertyValueFactory<>("price"));
         typeColumn.setCellValueFactory(new PropertyValueFactory<>("type"));
         quantityColumn.setCellValueFactory(new PropertyValueFactory<>("quantity"));
@@ -67,6 +70,10 @@ public class ProductTableView extends TableView {
 
     public void addNameColumn(){
         titleColumn.getColumns().add(nameColumn);
+    }
+    
+    public void addProductIdColumn(){
+        titleColumn.getColumns().add(productIdColumn);
     }
 
     public void addPriceColumn(){
@@ -93,6 +100,10 @@ public class ProductTableView extends TableView {
 
     public void removeNameColumn() {
         titleColumn.getColumns().remove(nameColumn);
+    }
+    
+    public void removeProductIdColumn(){
+        titleColumn.getColumns().remove(productIdColumn);
     }
 
     public void removePriceColumn(){
@@ -134,7 +145,7 @@ public class ProductTableView extends TableView {
     private Inventory inventory;
     private ObservableList<Product> observableInventory;
     private TableColumn<Product, String> titleColumn;
-    
+    private TableColumn<Product, Integer> productIdColumn;
     private TableColumn<Product, String> nameColumn;
     private TableColumn<Product, Float> priceColumn;
     private TableColumn<Product, String> typeColumn;

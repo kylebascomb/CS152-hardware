@@ -17,34 +17,39 @@ public class AddProductBox extends VBox {
 
     public void initComponents(){
         nameLabel = new Label("Product");
+        productIdLabel = new Label("Product ID");
         priceLabel = new Label("Price ");
         typeLabel = new Label("Type");
         quantityLabel = new Label("Quantity");
         descriptionLabel = new Label("Description");
+        
 
         nameField = new TextField();
+        productIdField = new TextField();
         priceField = new TextField();
         typeField = new TextField();
         quantityField = new TextField();
         descriptionField = new TextArea();
-
+        
         addButton = new Button("Add");
     }
 
     public void layoutComponents(){
 
         nameLabel.setMinWidth(64);
+        productIdLabel.setMinWidth(64);
         priceLabel.setMinWidth(64);
         typeLabel.setMinWidth(64);
         quantityLabel.setMinWidth(64);
         descriptionLabel.setMinWidth(64);
 
         HBox nameBox = new HBox(nameLabel, nameField);
+        HBox idBox = new HBox(productIdLabel, productIdField);
         HBox priceBox = new HBox(priceLabel, priceField);
         HBox typeBox = new HBox(typeLabel, typeField);
         HBox quantityBox = new HBox(quantityLabel, quantityField);
         HBox descriptionBox = new HBox(descriptionLabel, descriptionField);
-        this.getChildren().addAll(nameBox, priceBox, typeBox, quantityBox, descriptionBox, addButton);
+        this.getChildren().addAll(nameBox, idBox, priceBox, typeBox, quantityBox, descriptionBox, addButton);
     }
 
 
@@ -55,6 +60,24 @@ public class AddProductBox extends VBox {
      */
     public TextField getNameField() {
         return nameField;
+    }
+
+    /**
+     * Setter for productIdField
+     *
+     * @param productIdField - productIdField
+     */
+    public void setproductIdField(TextField productIdField) {
+        this.productIdField = productIdField;
+    }
+    
+    /**
+     * Getter for productIdField
+     *
+     * @return productIdField
+     */
+    public TextField getproductIdField() {
+        return productIdField;
     }
 
     /**
@@ -161,6 +184,7 @@ public class AddProductBox extends VBox {
     private TextField typeField;
     private TextField quantityField;
     private TextArea descriptionField;
+    private TextField productIdField;
 
     private Button addButton;
 
@@ -169,6 +193,7 @@ public class AddProductBox extends VBox {
     private Label typeLabel;
     private Label quantityLabel;
     private Label descriptionLabel;
+    private Label productIdLabel;
 
 
 }

@@ -28,15 +28,17 @@ public class AdminController extends Controller {
 
         adminView.getAddProductBox().getAddButton().setOnAction(e ->{
             String name = adminView.getAddProductBox().getNameField().getText();
+            String productId = adminView.getAddProductBox().getproductIdField().getText();
             String price = adminView.getAddProductBox().getPriceField().getText();
             String type = adminView.getAddProductBox().getTypeField().getText();
             String quantity = adminView.getAddProductBox().getQuantityField().getText();
             String description = adminView.getAddProductBox().getDescriptionField().getText();
 
-            addProduct(name, price, type, quantity, description);
+            addProduct(name, price, type, quantity, description, productId);
 
 
             adminView.getAddProductBox().getNameField().clear();
+            adminView.getAddProductBox().getproductIdField().clear();
             adminView.getAddProductBox().getTypeField().clear();
             adminView.getAddProductBox().getPriceField().clear();
             adminView.getAddProductBox().getQuantityField().clear();
@@ -46,16 +48,18 @@ public class AdminController extends Controller {
         });
     }
 
-    public void addProduct(String name, String price, String type, String quantity, String description){
+    public void addProduct(String name, String price, String type, String quantity, String description, String productId){
         //TODO error checking
+    	Integer trueId = Integer.parseInt(productId);
         Float truePrice = Float.parseFloat(price);
         Integer trueQuantity = Integer.parseInt(quantity);
-        inventory.addProduct(new Product(name, truePrice, trueQuantity, description, type));
+        inventory.addProduct(new Product(name, truePrice, trueQuantity, description, type, trueId));
     }
 
     public void initTable(){
         adminView.getProductTable().setInventory(inventory);
         adminView.getProductTable().addNameColumn();
+        adminView.getProductTable().addProductIdColumn();
         adminView.getProductTable().addPriceColumn();
         adminView.getProductTable().addTypeColumn();
         adminView.getProductTable().addQuantityColumn();
