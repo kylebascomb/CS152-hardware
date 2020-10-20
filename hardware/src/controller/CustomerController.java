@@ -25,6 +25,7 @@ public class CustomerController extends Controller {
         customerView.getProductTable().setInventory(inventory);
         customerView.getProductTable().addNameColumn();
         customerView.getProductTable().addPriceColumn();
+        customerView.getProductTable().addQuantityColumn();
     }
 
     private CustomerView customerView;
