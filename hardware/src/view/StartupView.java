@@ -18,13 +18,32 @@ public class StartupView extends View{
         horizontalLayout = new HBox(30);
         adminButton = new Button("Administration");
         customerButton = new Button("Customer");
+        saveButton = new Button("Save and Close");
         scene = new Scene( layout, 800, 600);
     }
 
     public void layoutComponents(){
-        horizontalLayout.getChildren().addAll(adminButton, customerButton);
+        horizontalLayout.getChildren().addAll(adminButton, customerButton, saveButton);
         horizontalLayout.setAlignment(Pos.CENTER);
         layout.getChildren().addAll(horizontalLayout);
+    }
+
+    /**
+     * Getter for saveButton
+     *
+     * @return saveButton
+     */
+    public Button getSaveButton() {
+        return saveButton;
+    }
+
+    /**
+     * Setter for saveButton
+     *
+     * @param saveButton - saveButton
+     */
+    public void setSaveButton(Button saveButton) {
+        this.saveButton = saveButton;
     }
 
     /**
@@ -67,4 +86,5 @@ public class StartupView extends View{
     private HBox horizontalLayout;
     private Button adminButton;
     private Button customerButton;
+    private Button saveButton;
 }
