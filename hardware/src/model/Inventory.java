@@ -101,6 +101,25 @@ public class Inventory implements Serializable {
 		this.products = products;
 	}
 
+
+	/**
+	 * Getter for products
+	 *
+	 * @return products
+	 */
+	public ArrayList<Product> getProducts() {
+		return products;
+	}
+
+	/**
+	 * Setter for products
+	 *
+	 * @param products - products
+	 */
+	public void setProducts(ArrayList<Product> products) {
+		this.products = products;
+	}
+
 	private ArrayList<Product> products;
 
 }
