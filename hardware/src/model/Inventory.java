@@ -22,6 +22,9 @@ public class Inventory implements Serializable {
 
 	public void addProduct(Product product){
 		products.add(product);
+
+		//TODO Automatically assign productId
+		product.setProductId(1);
 	}
 
 	public void removeProduce(Product product){
