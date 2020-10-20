@@ -144,7 +144,7 @@ public class ProductTableView extends TableView {
 
     private Inventory inventory;
     private ObservableList<Product> observableInventory;
-    private TableColumn<Product, String> titleColumn;
+    protected TableColumn<Product, String> titleColumn;
     private TableColumn<Product, Integer> productIdColumn;
     private TableColumn<Product, String> nameColumn;
     private TableColumn<Product, Float> priceColumn;
