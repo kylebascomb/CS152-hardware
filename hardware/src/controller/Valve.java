@@ -8,7 +8,7 @@ public interface Valve
   */
   public ValveResponse execute(Message message);
   
-  public num ValveResponse
+  public enum ValveResponse
   {
     MISS,
     EXECUTED,
