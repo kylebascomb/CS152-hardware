@@ -1,8 +1,10 @@
 package app;
+
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 import view.*;
 import model.*;
+import controller.*;
 
 /**
 * Hardware application.
