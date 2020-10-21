@@ -1,5 +1,6 @@
 package view;
 
+import javafx.stage.Stage
 import javafx.scene.Scene;
 
 public class View {
