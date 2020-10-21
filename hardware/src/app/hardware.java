@@ -26,7 +26,7 @@ public class hardware
     {
       e.printStackTrace();
     }
-    queue.clear()
+    queue.clear();
   }
   private static BlockingQueue<Message> queue = new LinkedBlockingQueue<Message>();
   private static View view;
