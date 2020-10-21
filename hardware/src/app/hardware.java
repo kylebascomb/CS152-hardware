@@ -14,13 +14,13 @@ public class hardware
 {
   public static void main (String[] args)
   {
-    view = View.wait(queue);
+    //view = View.wait(queue);
     model = new Model();
     
-    Controller hardware = new Controller(view, model, queue);
+    Controller hardware = new Controller();
     try
     {
-      hardware.mainLoop();
+      //hardware. ;
     }
     catch (Exception e)
     {
