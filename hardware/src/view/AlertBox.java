@@ -1,3 +1,5 @@
+package view;
+
 import javafx.stage.*;
 import javafx.scene.*;
 import javafx.scene.layout.*;
@@ -16,7 +18,7 @@ public class AlertBox
     window.setTitle(title);
     window.setMinWidth(200);
     
-    Label label = new label();
+    Label label = new Label();
     label.setText(message);
     Button closeButton = new Button("Close");
     closeButton.setOnAction(e -> window.close());
