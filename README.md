@@ -1,8 +1,24 @@
-# CS152-hardware
+# CS152-Hardware
 Point of Sale Java Application 
 
-Description
+**Introduction**<br />
 This application accentuates an inventory system with two perspectives - Customer and Administrator. Customer are able to add and remove items to their cart given a table of available items in a form of a catalogue. After completing their order, they can review their cart prior to printing out a receipt. In an Administratior view, a user can manage the system, such as adding or removing items from the inventory and updating the prices for these items. These users requires a login credential.
 
-Instructions
-[Application] follows the MVC Pattern desgin.
+*[Application]* follows the MVC Pattern design. It is implemented in the Java Programming Language and also involves JavaFx.
+
+**Requirements**<br />
+* Java IDE: Eclipse or IntelliJ
+* Latest Java SE Development Kit (SDK)
+  * https://www.oracle.com/java/technologies/javase-downloads.html
+* JavaFX 
+  * https://openjfx.io/
+
+**Recommended Modules**<br />
+
+**Installation**<br />
+
+**Configuration**<br />
+
+**Troubleshooting**<br />
+
+**FAQ**<br />
