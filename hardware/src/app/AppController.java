@@ -1,5 +1,6 @@
-package controller;
+package app;
 
+import controller.StartupController;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
