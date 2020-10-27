@@ -32,6 +32,8 @@ public class AddProductBox extends VBox {
         descriptionField = new TextArea();
         
         addButton = new Button("Add");
+        editButton = new Button("Update");
+        deleteButton = new Button("Delete");
     }
 
     public void layoutComponents(){
@@ -49,9 +51,26 @@ public class AddProductBox extends VBox {
         HBox typeBox = new HBox(typeLabel, typeField);
         HBox quantityBox = new HBox(quantityLabel, quantityField);
         HBox descriptionBox = new HBox(descriptionLabel, descriptionField);
-        this.getChildren().addAll(nameBox, idBox, priceBox, typeBox, quantityBox, descriptionBox, addButton);
+        HBox buttonBox = new HBox(addButton, editButton, deleteButton);
+        this.getChildren().addAll(nameBox, idBox, priceBox, typeBox, quantityBox, descriptionBox, buttonBox);
     }
 
+
+    public Button getDeleteButton() {
+        return deleteButton;
+    }
+
+    public void setDeleteButton(Button deleteButton) {
+        this.deleteButton = deleteButton;
+    }
+
+    public Button getEditButton() {
+        return editButton;
+    }
+
+    public void setEditButton(Button editButton) {
+        this.editButton = editButton;
+    }
 
     /**
      * Getter for nameField
@@ -187,6 +206,8 @@ public class AddProductBox extends VBox {
     private TextField productIdField;
 
     private Button addButton;
+    private Button editButton;
+    private Button deleteButton;
 
     private Label nameLabel;
     private Label priceLabel;
