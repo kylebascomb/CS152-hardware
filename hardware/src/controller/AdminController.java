@@ -56,7 +56,7 @@ public class AdminController extends Controller {
             String quantity = adminView.getAddProductBox().getQuantityField().getText();
             String description = adminView.getAddProductBox().getDescriptionField().getText();
 
-            //TODO error checking
+            //TODO error checking for parse int
             Product product = inventory.getProduct(Integer.parseInt(productId));
             if(product != null){
                 product.setName(name);
@@ -64,6 +64,12 @@ public class AdminController extends Controller {
                 product.setType(type);
                 product.setQuantity(Integer.parseInt(quantity));
                 product.setDescription(description);
+            } else{
+                AlertBox alertbox = new AlertBox("Error", "No such product exists with \n Product ID: " + productId);
+                alertbox.getCloseButton().setOnAction(event ->{
+                    alertbox.getWindow().close();
+                });
+                alertbox.display();
             }
 
             adminView.getProductTable().setInventory(inventory);
