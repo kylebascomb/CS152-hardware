@@ -19,6 +19,18 @@ public class Inventory implements Serializable {
 	}
 
 
+
+	public Product getProduct(int productID){
+		//TODO optimize this?
+		for(Product product: products){
+			if(product.getProductId() == productID){
+				return product;
+			}
+		}
+		return null;
+	}
+
+
 	public void addProduct(Product product){
 		products.add(product.clone());
 	}
