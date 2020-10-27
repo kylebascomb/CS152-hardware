@@ -7,6 +7,7 @@ import javafx.scene.layout.HBox;
 import model.Inventory;
 import model.Product;
 import view.AdminView;
+import view.AlertBox;
 
 public class AdminController extends Controller {
 
@@ -28,6 +29,7 @@ public class AdminController extends Controller {
             passControl(new StartupController(inventory), e);
         });
 
+        // add Product
         adminView.getAddProductBox().getAddButton().setOnAction(e ->{
             String name = adminView.getAddProductBox().getNameField().getText();
             String productId = adminView.getAddProductBox().getproductIdField().getText();
@@ -44,6 +46,8 @@ public class AdminController extends Controller {
             adminView.getProductTable().setInventory(inventory);
         });
 
+
+        // edit product
         adminView.getAddProductBox().getEditButton().setOnAction(e ->{
             String name = adminView.getAddProductBox().getNameField().getText();
             String productId = adminView.getAddProductBox().getproductIdField().getText();
@@ -65,15 +69,24 @@ public class AdminController extends Controller {
             adminView.getProductTable().setInventory(inventory);
         });
 
+        // delete product
         adminView.getAddProductBox().getDeleteButton().setOnAction(e ->{
             String productId = adminView.getAddProductBox().getproductIdField().getText();
             Product product = inventory.getProduct(Integer.parseInt(productId));
 
-            inventory.removeProduct(product);
+            AlertBox alertBox = new AlertBox("Product Deletion", "Warning, you are about to permanently delete a product");
+
+            alertBox.getCloseButton().setOnAction(event ->{
+                inventory.removeProduct(product);
+                alertBox.getWindow().close();
+            });
+
+            alertBox.display();
+
             adminView.getProductTable().setInventory(inventory);
         });
 
-
+        // get info from selected product
         adminView.getProductTable().setRowFactory(e ->{
             TableRow<Product> row = new TableRow();
             row.setOnMouseClicked(event ->{
