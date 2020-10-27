@@ -73,15 +73,22 @@ public class AdminController extends Controller {
         adminView.getAddProductBox().getDeleteButton().setOnAction(e ->{
             String productId = adminView.getAddProductBox().getproductIdField().getText();
             Product product = inventory.getProduct(Integer.parseInt(productId));
+            if(product != null) {
+                AlertBox alertBox = new AlertBox("Product Deletion", "Warning, you are about to permanently delete a product");
 
-            AlertBox alertBox = new AlertBox("Product Deletion", "Warning, you are about to permanently delete a product");
+                alertBox.getCloseButton().setOnAction(event -> {
+                    inventory.removeProduct(product);
+                    alertBox.getWindow().close();
+                });
 
-            alertBox.getCloseButton().setOnAction(event ->{
-                inventory.removeProduct(product);
-                alertBox.getWindow().close();
-            });
-
-            alertBox.display();
+                alertBox.display();
+            } else {
+                AlertBox alertbox = new AlertBox("Error", "No such product exists with \n Product ID: " + productId);
+                alertbox.getCloseButton().setOnAction(event ->{
+                    alertbox.getWindow().close();
+                });
+                alertbox.display();
+            }
 
             adminView.getProductTable().setInventory(inventory);
         });
