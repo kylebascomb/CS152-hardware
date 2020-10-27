@@ -15,6 +15,18 @@ public class CustomerController extends Controller {
         initTables();
         initControllers();
     }
+    
+    public CustomerController(Inventory inventory, Cart cart) {
+        this.inventory = inventory;
+        this.cart = cart;
+        cart = new Cart();
+
+        view = new CustomerView();
+        customerView = (CustomerView)view;
+
+        initTables();
+        initControllers();
+    }
 
     public void initControllers(){
         customerView.getBackButton().setOnAction(e ->{
@@ -44,6 +56,10 @@ public class CustomerController extends Controller {
             	customerView.getProductTable().setInventory(inventory);
             	customerView.getCartTable().setInventory(cart);
             }
+        });
+        
+        customerView.getCheckoutButton().setOnAction(e ->{
+            passControl(new ReceiptController(inventory, cart), e);
         });
     }
 

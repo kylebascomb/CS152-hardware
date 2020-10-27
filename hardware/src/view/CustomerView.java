@@ -15,13 +15,14 @@ public class CustomerView extends View{
         backButton = new Button("Back");
         addButton = new Button("Add to Cart");
         removeButton = new Button("Remove from Cart");
+        checkoutButton = new Button("Checkout");
         productTable = new ProductTableView();
         cartTable = new CartTableView();
         scene = new Scene(layout);
     }
 
     public void layoutComponents(){
-        layout.getChildren().addAll(productTable, cartTable, addButton, removeButton, backButton);
+        layout.getChildren().addAll(productTable, cartTable, addButton, removeButton, checkoutButton, backButton);
     }
 
     /**
@@ -77,6 +78,15 @@ public class CustomerView extends View{
     public Button getRemoveButton() {
         return removeButton;
     }
+    
+    /**
+     * Getter for checkoutButton
+     * 
+     * @return checkoutButton
+     */
+    public Button getCheckoutButton() {
+    	return checkoutButton;
+    }
 
 
     /**
@@ -110,6 +120,7 @@ public class CustomerView extends View{
     private Button backButton;
     private Button addButton;
     private Button removeButton;
+    private Button checkoutButton;
     private ProductTableView productTable;
     private CartTableView cartTable;
 }
