@@ -15,7 +15,7 @@ public class ReceiptView extends View {
 	}
 	
 	public void initComponents(){
-        layout = new HBox();
+        layout = new VBox();
         total = new Label("Total:    $");
         total.setFont(new Font(20.0));
         backButton = new Button("Cancel");
@@ -25,15 +25,12 @@ public class ReceiptView extends View {
     }
 
     public void layoutComponents(){
-    	VBox holder = new VBox();
     	HBox table = new HBox(cartTable);
-    	HBox label = new HBox(total);
     	HBox buttons = new HBox(saveButton, backButton);
-        holder.getChildren().addAll(table, label, buttons);
-        layout.getChildren().addAll(holder);
+        layout.getChildren().addAll(table, total, buttons);
     }
     
-    public HBox getLayout() {
+    public VBox getLayout() {
     	return layout;
     }
     
@@ -53,7 +50,7 @@ public class ReceiptView extends View {
     	return cartTable;
     }
 	
-	private HBox layout;
+	private VBox layout;
 	private Label total;
     private Button backButton;
     private Button saveButton;
