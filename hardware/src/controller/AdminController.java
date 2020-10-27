@@ -26,7 +26,11 @@ public class AdminController extends Controller {
 
     public void initControllers(){
         adminView.getBackButton().setOnAction(e ->{
-            passControl(new StartupController(inventory), e);
+            //Saves all data
+            StartupController startupController = new StartupController(inventory);
+            startupController.saveAllData();
+            //passes control
+            passControl(startupController, e);
         });
 
         // add Product

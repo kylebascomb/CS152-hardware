@@ -14,7 +14,7 @@ public class AdminView extends View{
 
     public void initComponents(){
         layout = new HBox();
-        backButton = new Button("Back");
+        backButton = new Button("Save & Close");
         addProductBox = new AddProductBox();
         productTable = new ProductTableView();
         scene = new Scene(layout);
