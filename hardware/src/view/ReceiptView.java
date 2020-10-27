@@ -18,6 +18,8 @@ public class ReceiptView extends View {
         layout = new VBox();
         total = new Label("Total:    $");
         total.setFont(new Font(20.0));
+        datetime = new Label();
+        datetime.setFont(new Font(20.0));
         backButton = new Button("Cancel");
         saveButton = new Button("Confirm");
         cartTable = new ProductTableView();
@@ -27,7 +29,7 @@ public class ReceiptView extends View {
     public void layoutComponents(){
     	HBox table = new HBox(cartTable);
     	HBox buttons = new HBox(saveButton, backButton);
-        layout.getChildren().addAll(table, total, buttons);
+        layout.getChildren().addAll(table, total, datetime, buttons);
     }
     
     public VBox getLayout() {
@@ -36,6 +38,10 @@ public class ReceiptView extends View {
     
     public Label getTotal() {
     	return total;
+    }
+    
+    public Label getDateTime() {
+    	return datetime;
     }
     
     public Button getBackButton() {
@@ -52,6 +58,7 @@ public class ReceiptView extends View {
 	
 	private VBox layout;
 	private Label total;
+	private Label datetime;
     private Button backButton;
     private Button saveButton;
     private ProductTableView cartTable;

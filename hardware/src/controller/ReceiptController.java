@@ -1,8 +1,11 @@
 package controller;
 
+import java.time.LocalDateTime;
+
 import model.Cart;
 import model.Inventory;
 import model.Product;
+import model.Receipt;
 import view.ReceiptView;
 
 public class ReceiptController extends Controller {
@@ -10,7 +13,7 @@ public class ReceiptController extends Controller {
 	public ReceiptController(Inventory inventory, Cart cart) {
 		this.inventory = inventory;
 		this.cart = cart;
-		total=0;
+		receipt = new Receipt(cart);
 		
 		receiptView = new ReceiptView();
 		view = receiptView;
@@ -40,14 +43,12 @@ public class ReceiptController extends Controller {
 		receiptView.getCartTable().addPriceColumn();
 		receiptView.getCartTable().addQuantityColumn();
 		
-		for(Product p : cart.getProducts()) {
-			total += p.getPrice() * p.getQuantity();
+		receiptView.getTotal().setText(receiptView.getTotal().getText() + receipt.getTotal());
+		receiptView.getDateTime().setText(receipt.getTimestamp());
 		}
-		receiptView.getTotal().setText(receiptView.getTotal().getText() + total);
-	}
 
 	private ReceiptView receiptView;
 	private Inventory inventory;
 	private Cart cart;
-	private float total;
+	private Receipt receipt;
 }
