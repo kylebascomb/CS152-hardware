@@ -3,6 +3,7 @@ package controller;
 import javafx.scene.Node;
 import javafx.stage.Stage;
 import model.Inventory;
+import model.ShopData;
 import view.StartupView;
 
 import java.io.*;
@@ -13,14 +14,14 @@ public class StartupController extends Controller{
         this.view = new StartupView();
         startupView = (StartupView)view;
 
-        inventory = new Inventory();
+        shopData = new ShopData();
         getAllData();
 
         initControllers();
     }
 
-    public StartupController(Inventory inventory){
-        this.inventory = inventory;
+    public StartupController(ShopData shopData){
+        this.shopData = shopData;
 
         this.view = new StartupView();
         startupView = (StartupView)view;
@@ -30,11 +31,11 @@ public class StartupController extends Controller{
 
     public void initControllers(){
         startupView.getAdminButton().setOnAction(e ->{
-            passControl(new AdminController(inventory), e);
+            passControl(new AdminController(shopData), e);
         });
 
         startupView.getCustomerButton().setOnAction(e ->{
-            passControl(new CustomerController(inventory), e);
+            passControl(new CustomerController(shopData), e);
         });
 
         startupView.getSaveButton().setOnAction(e ->{
@@ -56,7 +57,7 @@ public class StartupController extends Controller{
             ObjectOutputStream out = new ObjectOutputStream(file);
 
             // Method for serialization of object
-            out.writeObject(inventory);
+            out.writeObject(shopData);
 
             out.close();
             file.close();
@@ -81,7 +82,7 @@ public class StartupController extends Controller{
             ObjectInputStream in = new ObjectInputStream(file);
 
             // Method for deserialization of object
-            inventory = (Inventory)in.readObject();
+            shopData = (ShopData)in.readObject();
 
             in.close();
             file.close();
@@ -123,7 +124,7 @@ public class StartupController extends Controller{
     }
 
     private StartupView startupView;
-    private Inventory inventory;
+    private ShopData shopData;
 
     private String FILE_PATH = "./hardware/resources/inventory.dat";
 }

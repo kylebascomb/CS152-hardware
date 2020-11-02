@@ -5,8 +5,9 @@ import view.CustomerView;
 
 public class CustomerController extends Controller {
 
-    public CustomerController(Inventory inventory) {
-        this.inventory = inventory;
+    public CustomerController(ShopData shopData) {
+        this.shopData = shopData;
+        this.inventory = shopData.getInventory();
         cart = new Cart();
 
         view = new CustomerView();
@@ -30,7 +31,7 @@ public class CustomerController extends Controller {
 
     public void initControllers(){
         customerView.getBackButton().setOnAction(e ->{
-            passControl(new StartupController(inventory), e);
+            passControl(new StartupController(shopData), e);
         });
         
         customerView.getAddButton().setOnAction(e ->{
@@ -59,7 +60,7 @@ public class CustomerController extends Controller {
         });
         
         customerView.getCheckoutButton().setOnAction(e ->{
-            passControl(new ReceiptController(inventory, cart), e);
+            passControl(new ReceiptController(shopData, cart), e);
         });
     }
 
@@ -77,5 +78,6 @@ public class CustomerController extends Controller {
 
     private CustomerView customerView;
     private Inventory inventory;
+    private ShopData shopData;
     private Cart cart;
 }

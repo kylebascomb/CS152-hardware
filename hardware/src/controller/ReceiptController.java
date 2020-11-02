@@ -2,16 +2,14 @@ package controller;
 
 import java.time.LocalDateTime;
 
-import model.Cart;
-import model.Inventory;
-import model.Product;
-import model.Receipt;
+import model.*;
 import view.ReceiptView;
 
 public class ReceiptController extends Controller {
 	
-	public ReceiptController(Inventory inventory, Cart cart) {
-		this.inventory = inventory;
+	public ReceiptController(ShopData shopData, Cart cart) {
+		this.shopData = shopData;
+		this.inventory = shopData.getInventory();
 		this.cart = cart;
 		receipt = new Receipt(cart);
 		
@@ -29,8 +27,10 @@ public class ReceiptController extends Controller {
 		
 		receiptView.getSaveButton().setOnAction(e ->{
 			//Saves all data
-            StartupController startupController = new StartupController(inventory);
+            StartupController startupController = new StartupController(shopData);
             startupController.saveAllData();
+            //adds receipt to report
+			shopData.getReport().addReceipt(receipt);
             //passes control
             passControl(startupController, e);
         });
@@ -51,4 +51,5 @@ public class ReceiptController extends Controller {
 	private Inventory inventory;
 	private Cart cart;
 	private Receipt receipt;
+	private ShopData shopData;
 }

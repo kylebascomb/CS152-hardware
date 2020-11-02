@@ -3,16 +3,21 @@ package controller;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import model.Inventory;
 import model.Product;
+import model.Report;
+import model.ShopData;
 import view.AdminView;
 import view.AlertBox;
 
 public class AdminController extends Controller {
 
-    public AdminController(Inventory inventory) {
-        this.inventory = inventory;
+    public AdminController(ShopData shopData) {
+        this.shopData = shopData;
+        this.inventory = shopData.getInventory();
+        this.report = shopData.getReport();
 
         view = new AdminView();
         adminView = (AdminView)view;
@@ -27,7 +32,7 @@ public class AdminController extends Controller {
     public void initControllers(){
         adminView.getBackButton().setOnAction(e ->{
             //Saves all data
-            StartupController startupController = new StartupController(inventory);
+            StartupController startupController = new StartupController(shopData);
             startupController.saveAllData();
             //passes control
             passControl(startupController, e);
@@ -151,4 +156,6 @@ public class AdminController extends Controller {
     private Product selectedProduct;
     private AdminView adminView;
     private Inventory inventory;
+    private Report report;
+    private ShopData shopData;
 }
