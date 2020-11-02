@@ -4,6 +4,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
 import view.components.AddProductBox;
+import view.components.InventoryBox;
 import view.components.ProductTableView;
 import view.components.ReportTableView;
 
@@ -17,14 +18,13 @@ public class AdminView extends View{
     public void initComponents(){
         layout = new HBox();
         backButton = new Button("Save & Close");
-        addProductBox = new AddProductBox();
-        productTable = new ProductTableView();
+        inventoryBox = new InventoryBox();
         reportTable = new ReportTableView();
         scene = new Scene(layout);
     }
 
     public void layoutComponents(){
-        layout.getChildren().addAll(productTable, addProductBox, reportTable,  backButton);
+        layout.getChildren().addAll(inventoryBox, reportTable,  backButton);
     }
 
     public ReportTableView getReportTable() {
@@ -77,7 +77,7 @@ public class AdminView extends View{
      * @return addProductBox
      */
     public AddProductBox getAddProductBox() {
-        return addProductBox;
+        return inventoryBox.getAddProductBox();
     }
 
     /**
@@ -86,7 +86,7 @@ public class AdminView extends View{
      * @param addProductBox - addProductBox
      */
     public void setAddProductBox(AddProductBox addProductBox) {
-        this.addProductBox = addProductBox;
+        this.inventoryBox.setAddProductBox(addProductBox);
     }
 
     /**
@@ -95,7 +95,7 @@ public class AdminView extends View{
      * @return productTable
      */
     public ProductTableView getProductTable() {
-        return productTable;
+        return inventoryBox.getProductTable();
     }
 
     /**
@@ -104,12 +104,11 @@ public class AdminView extends View{
      * @param productTable - productTable
      */
     public void setProductTable(ProductTableView productTable) {
-        this.productTable = productTable;
+        this.inventoryBox.setProductTable(productTable);
     }
 
     private HBox layout;
     private Button backButton;
-    private AddProductBox addProductBox;
-    private ProductTableView productTable;
+    private InventoryBox inventoryBox;
     private ReportTableView reportTable;
 }
