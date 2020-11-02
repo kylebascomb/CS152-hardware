@@ -2,11 +2,12 @@ package view;
 
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Menu;
+import javafx.scene.control.MenuBar;
+import javafx.scene.control.MenuItem;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
-import view.components.AddProductBox;
-import view.components.InventoryBox;
-import view.components.ProductTableView;
-import view.components.ReportTableView;
+import view.components.*;
 
 public class AdminView extends View{
 
@@ -16,41 +17,95 @@ public class AdminView extends View{
     }
 
     public void initComponents(){
-        layout = new HBox();
+        layout = new BorderPane();
         backButton = new Button("Save & Close");
         inventoryBox = new InventoryBox();
-        reportTable = new ReportTableView();
+        reportBox = new ReportBox();
+        menuBar = new MenuBar();
         scene = new Scene(layout);
+        initMenu();
     }
 
     public void layoutComponents(){
-        layout.getChildren().addAll(inventoryBox, reportTable,  backButton);
+        layout.setTop(menuBar);
+        layout.setCenter(inventoryBox);
+        layout.setRight(backButton);
+        //layout.getChildren().addAll(inventoryBox, reportBox,  backButton);
+    }
+
+    public void initMenu(){
+        menuBar = new MenuBar();
+        menu = new Menu("Menu");
+        inventoryMenuItem = new MenuItem("Inventory");
+        reportMenuItem = new MenuItem("Report");
+
+        menuBar.getMenus().add(menu);
+        menu.getItems().addAll(inventoryMenuItem, reportMenuItem);
+
+    }
+
+    public MenuBar getMenuBar() {
+        return menuBar;
+    }
+
+    public void setMenuBar(MenuBar menuBar) {
+        this.menuBar = menuBar;
     }
 
     public ReportTableView getReportTable() {
-        return reportTable;
+        return reportBox.getReportTable();
     }
 
     public void setReportTable(ReportTableView reportTable) {
-        this.reportTable = reportTable;
+        this.reportBox.setReportTable(reportTable);
     }
 
-    /**
-     * Getter for layout
-     *
-     * @return layout
-     */
-    public HBox getLayout() {
+    public Menu getMenu() {
+        return menu;
+    }
+
+    public void setMenu(Menu menu) {
+        this.menu = menu;
+    }
+
+    public MenuItem getInventoryMenuItem() {
+        return inventoryMenuItem;
+    }
+
+    public void setInventoryMenuItem(MenuItem inventoryMenuItem) {
+        this.inventoryMenuItem = inventoryMenuItem;
+    }
+
+    public MenuItem getReportMenuItem() {
+        return reportMenuItem;
+    }
+
+    public void setReportMenuItem(MenuItem reportMenuItem) {
+        this.reportMenuItem = reportMenuItem;
+    }
+
+    public BorderPane getLayout() {
         return layout;
     }
 
-    /**
-     * Setter for layout
-     *
-     * @param layout - layout
-     */
-    public void setLayout(HBox layout) {
+    public void setLayout(BorderPane layout) {
         this.layout = layout;
+    }
+
+    public InventoryBox getInventoryBox() {
+        return inventoryBox;
+    }
+
+    public void setInventoryBox(InventoryBox inventoryBox) {
+        this.inventoryBox = inventoryBox;
+    }
+
+    public ReportBox getReportBox() {
+        return reportBox;
+    }
+
+    public void setReportBox(ReportBox reportBox) {
+        this.reportBox = reportBox;
     }
 
     /**
@@ -107,8 +162,12 @@ public class AdminView extends View{
         this.inventoryBox.setProductTable(productTable);
     }
 
-    private HBox layout;
+    private BorderPane layout;
     private Button backButton;
     private InventoryBox inventoryBox;
-    private ReportTableView reportTable;
+    private ReportBox reportBox;
+    private MenuBar menuBar;
+    private Menu menu;
+    private MenuItem inventoryMenuItem;
+    private MenuItem reportMenuItem;
 }

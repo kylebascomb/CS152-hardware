@@ -23,6 +23,7 @@ public class AdminController extends Controller {
         adminView = (AdminView)view;
 
         initTable();
+        initMenu();
         initControllers();
 
         //TESTING
@@ -154,6 +155,16 @@ public class AdminController extends Controller {
         //Report Table
         adminView.getReportTable().setReport(shopData.getReport());
         adminView.getReportTable().addTimeColumn();
+    }
+
+    public void initMenu(){
+        adminView.getInventoryMenuItem().setOnAction(e ->{
+            adminView.getLayout().setCenter(adminView.getInventoryBox());
+        });
+        adminView.getReportMenuItem().setOnAction(e -> {
+            adminView.getLayout().setCenter(adminView.getReportBox());
+        });
+
     }
 
 
