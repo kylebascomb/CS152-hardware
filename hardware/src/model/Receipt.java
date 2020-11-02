@@ -1,8 +1,9 @@
 package model;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
-public class Receipt {
+public class Receipt implements Serializable{
 	
 	public Receipt(Cart cart) {
 		datetime = LocalDateTime.now();
