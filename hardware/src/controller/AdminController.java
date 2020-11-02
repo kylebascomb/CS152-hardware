@@ -142,6 +142,7 @@ public class AdminController extends Controller {
     }
 
     public void initTable(){
+        //Product Table
         adminView.getProductTable().setInventory(inventory);
         adminView.getProductTable().addNameColumn();
         adminView.getProductTable().addProductIdColumn();
@@ -149,6 +150,10 @@ public class AdminController extends Controller {
         adminView.getProductTable().addTypeColumn();
         adminView.getProductTable().addQuantityColumn();
         adminView.getProductTable().addDescriptionColumn();
+
+        //Report Table
+        adminView.getReportTable().setReport(shopData.getReport());
+        adminView.getReportTable().addTimeColumn();
     }
 
 

@@ -4,6 +4,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
 import view.components.AddProductBox;
+import view.components.ProductTableView;
+import view.components.ReportTableView;
 
 public class AdminView extends View{
 
@@ -17,13 +19,21 @@ public class AdminView extends View{
         backButton = new Button("Save & Close");
         addProductBox = new AddProductBox();
         productTable = new ProductTableView();
+        reportTable = new ReportTableView();
         scene = new Scene(layout);
     }
 
     public void layoutComponents(){
-        layout.getChildren().addAll(productTable, addProductBox,  backButton);
+        layout.getChildren().addAll(productTable, addProductBox, reportTable,  backButton);
     }
 
+    public ReportTableView getReportTable() {
+        return reportTable;
+    }
+
+    public void setReportTable(ReportTableView reportTable) {
+        this.reportTable = reportTable;
+    }
 
     /**
      * Getter for layout
@@ -101,4 +111,5 @@ public class AdminView extends View{
     private Button backButton;
     private AddProductBox addProductBox;
     private ProductTableView productTable;
+    private ReportTableView reportTable;
 }

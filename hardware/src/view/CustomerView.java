@@ -3,6 +3,8 @@ package view;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
+import view.components.CartTableView;
+import view.components.ProductTableView;
 
 public class CustomerView extends View{
 
