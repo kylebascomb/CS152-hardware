@@ -53,10 +53,20 @@ public class AdminController extends Controller {
             String quantity = adminView.getAddProductBox().getQuantityField().getText();
             String description = adminView.getAddProductBox().getDescriptionField().getText();
 
-            addProduct(name, price, type, quantity, description, productId);
+             //check for duplicate id product
+            Product product2 = inventory.getProduct(Integer.parseInt(productId));
+            if(product2 == null){
+            	 addProduct(name, price, type, quantity, description, productId);
 
-            clearProductBox();
-
+                 clearProductBox();
+            } else{
+                AlertBox alertbox = new AlertBox("Sorry", "  This Product ID: " + productId +" already exist. "
+                		+ "\n  maybe, consider editing the product  ");
+                alertbox.getCloseButton().setOnAction(event ->{
+                    alertbox.getWindow().close();
+                });
+                alertbox.display();
+            }
 
             adminView.getProductTable().setInventory(inventory);
         });
