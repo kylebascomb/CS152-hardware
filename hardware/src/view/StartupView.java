@@ -20,6 +20,7 @@ public class StartupView extends View{
         customerButton = new Button("Customer");
         saveButton = new Button("Save and Close");
         scene = new Scene( layout, 800, 600);
+        scene.getStylesheets().add("/stylesheets/stylesheets.css");
     }
 
     public void layoutComponents(){

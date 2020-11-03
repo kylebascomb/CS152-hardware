@@ -21,6 +21,7 @@ public class CustomerView extends View{
         productTable = new ProductTableView();
         cartTable = new CartTableView();
         scene = new Scene(layout);
+        scene.getStylesheets().add("/stylesheets/stylesheets.css");
     }
 
     public void layoutComponents(){

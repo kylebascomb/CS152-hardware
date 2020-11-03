@@ -24,6 +24,7 @@ public class ReceiptView extends View {
         saveButton = new Button("Confirm");
         cartTable = new ProductTableView();
         scene = new Scene(layout);
+        scene.getStylesheets().add("/stylesheets/stylesheets.css");
     }
 
     public void layoutComponents(){

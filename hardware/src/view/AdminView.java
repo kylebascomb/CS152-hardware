@@ -23,18 +23,23 @@ public class AdminView extends View{
         reportBox = new ReportBox();
         menuBar = new MenuBar();
         scene = new Scene(layout);
+        scene.getStylesheets().add("/stylesheets/stylesheets.css");
         initMenu();
+        setStyles();
     }
 
     public void layoutComponents(){
         layout.setTop(menuBar);
         layout.setCenter(inventoryBox);
         layout.setRight(backButton);
-        //layout.getChildren().addAll(inventoryBox, reportBox,  backButton);
     }
 
     public void initMenu(){
         menuBar = new MenuBar();
+
+
+
+
         menu = new Menu("Menu");
         inventoryMenuItem = new MenuItem("Inventory");
         reportMenuItem = new MenuItem("Report");
@@ -42,6 +47,11 @@ public class AdminView extends View{
         menuBar.getMenus().add(menu);
         menu.getItems().addAll(inventoryMenuItem, reportMenuItem);
 
+    }
+
+    public void setStyles(){
+        inventoryBox.getAddProductBox().getStyleClass().add("box-border");
+        menuBar.getStyleClass().add("menu-bar");
     }
 
     public MenuBar getMenuBar() {
@@ -107,6 +117,7 @@ public class AdminView extends View{
     public void setReportBox(ReportBox reportBox) {
         this.reportBox = reportBox;
     }
+
 
     public CartTableView getCartTable(){
         return this.reportBox.getCartTable();
