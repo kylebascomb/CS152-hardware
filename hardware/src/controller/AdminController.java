@@ -25,7 +25,8 @@ public class AdminController extends Controller {
         adminView.getBackButton().setOnAction(e ->{
             passControl(new StartupController(inventory), e);
         });
-
+        
+        // add Product
         adminView.getAddProductBox().getAddButton().setOnAction(e ->{
             String name = adminView.getAddProductBox().getNameField().getText();
             String productId = adminView.getAddProductBox().getproductIdField().getText();
@@ -33,7 +34,7 @@ public class AdminController extends Controller {
             String type = adminView.getAddProductBox().getTypeField().getText();
             String quantity = adminView.getAddProductBox().getQuantityField().getText();
             String description = adminView.getAddProductBox().getDescriptionField().getText();
-
+            
             addProduct(name, price, type, quantity, description, productId);
 
 
