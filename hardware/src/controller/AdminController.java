@@ -5,10 +5,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
-import model.Inventory;
-import model.Product;
-import model.Report;
-import model.ShopData;
+import model.*;
 import view.AdminView;
 import view.AlertBox;
 
@@ -22,8 +19,7 @@ public class AdminController extends Controller {
         view = new AdminView();
         adminView = (AdminView)view;
 
-        initTable();
-        initMenu();
+
         initControllers();
 
         //TESTING
@@ -31,6 +27,11 @@ public class AdminController extends Controller {
     }
 
     public void initControllers(){
+        initTable();
+        initMenu();
+        initInventoryControllers();
+        initReportControllers();
+
         adminView.getBackButton().setOnAction(e ->{
             //Saves all data
             StartupController startupController = new StartupController(shopData);
@@ -39,6 +40,10 @@ public class AdminController extends Controller {
             passControl(startupController, e);
         });
 
+
+    }
+
+    public void initInventoryControllers(){
         // add Product
         adminView.getAddProductBox().getAddButton().setOnAction(e ->{
             String name = adminView.getAddProductBox().getNameField().getText();
@@ -125,6 +130,16 @@ public class AdminController extends Controller {
         });
     }
 
+    public void initReportControllers(){
+        adminView.getReportTable().setRowFactory(e ->{
+            TableRow<Receipt> row = new TableRow<>();
+            row.setOnMouseClicked(event ->{
+            adminView.getCartTable().setInventory(row.getItem().getCart());
+            });
+            return row;
+        });
+    }
+
     public void clearProductBox(){
         adminView.getAddProductBox().getNameField().clear();
         adminView.getAddProductBox().getproductIdField().clear();
@@ -155,6 +170,14 @@ public class AdminController extends Controller {
         //Report Table
         adminView.getReportTable().setReport(shopData.getReport());
         adminView.getReportTable().addTimeColumn();
+        
+        //Report Cart
+        adminView.getCartTable().addNameColumn();
+        adminView.getCartTable().addProductIdColumn();
+        adminView.getCartTable().addPriceColumn();
+        adminView.getCartTable().addTypeColumn();
+        adminView.getCartTable().addQuantityColumn();
+        adminView.getCartTable().addDescriptionColumn();
     }
 
     public void initMenu(){

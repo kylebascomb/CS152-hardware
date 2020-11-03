@@ -108,6 +108,14 @@ public class AdminView extends View{
         this.reportBox = reportBox;
     }
 
+    public CartTableView getCartTable(){
+        return this.reportBox.getCartTable();
+    }
+
+    public void setCartTable(CartTableView cartTable){
+        this.reportBox.setCartTable(cartTable);
+    }
+
     /**
      * Getter for backButton
      *
