@@ -1,7 +1,9 @@
 package controller;
 
 import model.*;
+import view.AlertBox;
 import view.CustomerView;
+import view.InputBox;
 
 public class CustomerController extends Controller {
 
@@ -37,26 +39,84 @@ public class CustomerController extends Controller {
         customerView.getAddButton().setOnAction(e ->{
         	int i = customerView.getProductTable().getSelectionModel().getSelectedIndex();
         	Product p = inventory.getProducts().get(i);
-        	//only add to cart if the item has stock
-            if(inventory.removeProduct(p, 1)) {
-            	cart.addProduct(p, 1);
-            	customerView.getProductTable().setInventory(inventory);
-            	customerView.getCartTable().setInventory(cart);
-            }
+        	
+        	InputBox inputBox = new InputBox("Add Quantity", "Please input how many items you wish to add to cart");
+        	inputBox.getConfirmButton().setOnAction(event ->{
+                try {
+                	int num = Integer.parseInt(inputBox.getNumber().getText());
+                	if(num < 0) {
+                		AlertBox alertbox = new AlertBox("Error", "Please enter a positive number");
+                        alertbox.getCloseButton().setOnAction(ev ->{
+                            alertbox.getWindow().close();
+                        });
+                        alertbox.display();
+                	}
+                	else if(inventory.removeProduct(p, num)) {
+                    	cart.addProduct(p, num);
+                    	customerView.getProductTable().setInventory(inventory);
+                    	customerView.getCartTable().setInventory(cart);
+                    	inputBox.getWindow().close();
+                    }
+                	else {
+                		AlertBox alertbox = new AlertBox("Error", "Not enough stock. Please input smaller number");
+                        alertbox.getCloseButton().setOnAction(ev ->{
+                            alertbox.getWindow().close();
+                        });
+                        alertbox.display();
+                	}
+                }
+                catch(NumberFormatException nfe) {
+                	AlertBox alertbox = new AlertBox("Error", "Please input a whole number");
+                    alertbox.getCloseButton().setOnAction(ev ->{
+                        alertbox.getWindow().close();
+                    });
+                    alertbox.display();
+                }
+            });
+        	inputBox.display();
         });
         
         customerView.getRemoveButton().setOnAction(e ->{
         	int i = customerView.getCartTable().getSelectionModel().getSelectedIndex();
         	Product p = cart.getProducts().get(i);
-        	//only add to inventory if stuff in cart
-        	if(cart.removeProduct(p, 1)) {
-        		if(p.getQuantity() == 0) {
-        			cart.removeProduct(p);
-        		}
-            	inventory.addProduct(p, 1);
-            	customerView.getProductTable().setInventory(inventory);
-            	customerView.getCartTable().setInventory(cart);
-            }
+        	
+        	InputBox inputBox = new InputBox("Remove Quantity", "Please input how many items you wish to remove from cart");
+        	inputBox.getConfirmButton().setOnAction(event ->{
+                try {
+                	int num = Integer.parseInt(inputBox.getNumber().getText());
+                	if(num < 0) {
+                		AlertBox alertbox = new AlertBox("Error", "Please enter a positive number");
+                        alertbox.getCloseButton().setOnAction(ev ->{
+                            alertbox.getWindow().close();
+                        });
+                        alertbox.display();
+                	}
+                	else if(cart.removeProduct(p, num)) {
+                		if(p.getQuantity() == 0) {
+                			cart.removeProduct(p);
+                		}
+                    	inventory.addProduct(p, num);
+                    	customerView.getProductTable().setInventory(inventory);
+                    	customerView.getCartTable().setInventory(cart);
+                    	inputBox.getWindow().close();
+                    }
+                	else {
+                		AlertBox alertbox = new AlertBox("Error", "Not enough in cart. Please input smaller number");
+                        alertbox.getCloseButton().setOnAction(ev ->{
+                            alertbox.getWindow().close();
+                        });
+                        alertbox.display();
+                	}
+                }
+                catch(NumberFormatException nfe) {
+                	AlertBox alertbox = new AlertBox("Error", "Please input a whole number");
+                    alertbox.getCloseButton().setOnAction(ev ->{
+                        alertbox.getWindow().close();
+                    });
+                    alertbox.display();
+                }
+            });
+        	inputBox.display();
         });
         
         customerView.getCheckoutButton().setOnAction(e ->{
