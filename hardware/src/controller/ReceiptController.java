@@ -43,7 +43,7 @@ public class ReceiptController extends Controller {
 		receiptView.getCartTable().addPriceColumn();
 		receiptView.getCartTable().addQuantityColumn();
 		
-		receiptView.getTotal().setText(receiptView.getTotal().getText() + receipt.getTotal());
+		receiptView.getTotal().setText(receiptView.getTotal().getText() + String.format("%.2f", receipt.getTotal()));
 		receiptView.getDateTime().setText(receipt.getTimeStamp());
 		}
 

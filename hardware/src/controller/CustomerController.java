@@ -55,6 +55,7 @@ public class CustomerController extends Controller {
                     	cart.addProduct(p, num);
                     	customerView.getProductTable().setInventory(inventory);
                     	customerView.getCartTable().setInventory(cart);
+                    	customerView.getPriceLabel().setText("Total:    $" + String.format("%.2f", cart.getTotal()));
                     	inputBox.getWindow().close();
                     }
                 	else {
@@ -98,6 +99,7 @@ public class CustomerController extends Controller {
                     	inventory.addProduct(p, num);
                     	customerView.getProductTable().setInventory(inventory);
                     	customerView.getCartTable().setInventory(cart);
+                    	customerView.getPriceLabel().setText("Total:    $" + String.format("%.2f", cart.getTotal()));
                     	inputBox.getWindow().close();
                     }
                 	else {
@@ -134,6 +136,8 @@ public class CustomerController extends Controller {
         customerView.getCartTable().addNameColumn();
         customerView.getCartTable().addPriceColumn();
         customerView.getCartTable().addQuantityColumn();
+        
+        customerView.getPriceLabel().setText(customerView.getPriceLabel().getText() + "0.00");
     }
 
     private CustomerView customerView;

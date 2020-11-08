@@ -2,7 +2,10 @@ package view;
 
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
 import view.components.CartTableView;
 import view.components.ProductTableView;
 
@@ -18,6 +21,8 @@ public class CustomerView extends View{
         addButton = new Button("Add to Cart");
         removeButton = new Button("Remove from Cart");
         checkoutButton = new Button("Checkout");
+        priceLabel = new Label("Total:    $");
+        priceLabel.setFont(new Font(20.0));
         productTable = new ProductTableView();
         cartTable = new CartTableView();
         scene = new Scene(layout);
@@ -25,7 +30,9 @@ public class CustomerView extends View{
     }
 
     public void layoutComponents(){
-        layout.getChildren().addAll(productTable, cartTable, addButton, removeButton, checkoutButton, backButton);
+    	VBox cart = new VBox();
+    	cart.getChildren().addAll(cartTable, priceLabel);
+        layout.getChildren().addAll(productTable, cart, addButton, removeButton, checkoutButton, backButton);
     }
 
     /**
@@ -90,6 +97,14 @@ public class CustomerView extends View{
     public Button getCheckoutButton() {
     	return checkoutButton;
     }
+    
+    /**
+     * Getter for priceLabel
+     * @return priceLabel
+     */
+    public Label getPriceLabel(){
+    	return priceLabel;
+    }
 
 
     /**
@@ -124,6 +139,7 @@ public class CustomerView extends View{
     private Button addButton;
     private Button removeButton;
     private Button checkoutButton;
+    private Label priceLabel;
     private ProductTableView productTable;
     private CartTableView cartTable;
 }

@@ -11,7 +11,7 @@ public class Receipt implements Serializable{
 		this.cart = cart;
 		total=0;
 		for(Product p : cart.getProducts()) {
-			total += p.getPrice() * p.getQuantity();
+			total += p.getPrice() * (float)p.getQuantity();
 		}
 	}
 	
