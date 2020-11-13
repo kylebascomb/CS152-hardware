@@ -1,5 +1,6 @@
 package view.components;
 
+import javafx.geometry.Pos;
 import javafx.scene.layout.HBox;
 
 public class InventoryBox extends HBox {
@@ -17,6 +18,8 @@ public class InventoryBox extends HBox {
 
     private void layoutComponents(){
         getChildren().addAll(productTable, addProductBox);
+        setAlignment(Pos.CENTER);
+        setSpacing(20);
     }
 
     public AddProductBox getAddProductBox() {

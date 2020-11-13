@@ -1,17 +1,21 @@
 package view;
 
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import view.components.ProductTableView;
 
 public class ReceiptView extends View {
 	
 	public ReceiptView() {
 		super();
+		setStyles();
 	}
 	
 	public void initComponents(){
@@ -23,14 +27,31 @@ public class ReceiptView extends View {
         backButton = new Button("Cancel");
         saveButton = new Button("Confirm");
         cartTable = new ProductTableView();
-        scene = new Scene(layout);
+        borderPane = new BorderPane();
+        titleText = new Text(TITLE_TEXT);
+
+
+        scene = new Scene(borderPane);
         scene.getStylesheets().add("/stylesheets/stylesheets.css");
     }
 
     public void layoutComponents(){
+	    VBox title = new VBox();
     	HBox table = new HBox(cartTable);
     	HBox buttons = new HBox(saveButton, backButton);
+    	title.getChildren().add(titleText);
+    	title.getStyleClass().add("title-background");
         layout.getChildren().addAll(table, total, datetime, buttons);
+
+        layout.setAlignment(Pos.CENTER);
+        table.setAlignment(Pos.CENTER);
+        buttons.setAlignment(Pos.CENTER);
+        borderPane.setCenter(layout);
+        borderPane.setTop(title);
+    }
+
+    public void setStyles(){
+	    titleText.getStyleClass().add("title-text");
     }
     
     public VBox getLayout() {
@@ -63,5 +84,8 @@ public class ReceiptView extends View {
     private Button backButton;
     private Button saveButton;
     private ProductTableView cartTable;
+    private BorderPane borderPane;
+    private Text titleText;
+    private final String TITLE_TEXT = "Checkout";
 
 }

@@ -1,5 +1,6 @@
 package view;
 
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Menu;
@@ -7,6 +8,8 @@ import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import view.components.*;
 
 public class AdminView extends View{
@@ -24,21 +27,22 @@ public class AdminView extends View{
         menuBar = new MenuBar();
         scene = new Scene(layout);
         scene.getStylesheets().add("/stylesheets/stylesheets.css");
+        titleText = new Text(TITLE_TEXT);
         initMenu();
         setStyles();
     }
 
     public void layoutComponents(){
-        layout.setTop(menuBar);
+        VBox topBox = new VBox();
+        topBox.getChildren().addAll(titleText, menuBar);
+        topBox.getStyleClass().add("title-background");
+        layout.setTop(topBox);
         layout.setCenter(inventoryBox);
         layout.setRight(backButton);
     }
 
     public void initMenu(){
         menuBar = new MenuBar();
-
-
-
 
         menu = new Menu("Menu");
         inventoryMenuItem = new MenuItem("Inventory");
@@ -50,8 +54,9 @@ public class AdminView extends View{
     }
 
     public void setStyles(){
-        inventoryBox.getAddProductBox().getStyleClass().add("box-border");
         menuBar.getStyleClass().add("menu-bar");
+        titleText.getStyleClass().add("title-text");
+
     }
 
     public MenuBar getMenuBar() {
@@ -189,4 +194,6 @@ public class AdminView extends View{
     private Menu menu;
     private MenuItem inventoryMenuItem;
     private MenuItem reportMenuItem;
+    private Text titleText;
+    private final String TITLE_TEXT = "Administration";
 }

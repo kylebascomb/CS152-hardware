@@ -38,12 +38,12 @@ public class AddProductBox extends VBox {
 
     public void layoutComponents(){
 
-        nameLabel.setMinWidth(64);
-        productIdLabel.setMinWidth(64);
-        priceLabel.setMinWidth(64);
-        typeLabel.setMinWidth(64);
-        quantityLabel.setMinWidth(64);
-        descriptionLabel.setMinWidth(64);
+        nameLabel.setMinWidth(84);
+        productIdLabel.setMinWidth(84);
+        priceLabel.setMinWidth(84);
+        typeLabel.setMinWidth(84);
+        quantityLabel.setMinWidth(84);
+        descriptionLabel.setMinWidth(84);
 
         HBox nameBox = new HBox(nameLabel, nameField);
         HBox idBox = new HBox(productIdLabel, productIdField);

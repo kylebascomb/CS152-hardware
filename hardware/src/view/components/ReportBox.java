@@ -1,5 +1,6 @@
 package view.components;
 
+import javafx.geometry.Pos;
 import javafx.scene.layout.HBox;
 
 public class ReportBox extends HBox {
@@ -17,6 +18,7 @@ public class ReportBox extends HBox {
 
     private void layoutComponents(){
         getChildren().addAll(reportTable, cartTable);
+        setAlignment(Pos.CENTER);
     }
 
 

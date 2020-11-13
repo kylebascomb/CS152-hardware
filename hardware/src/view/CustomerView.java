@@ -1,11 +1,14 @@
 package view;
 
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import view.components.CartTableView;
 import view.components.ProductTableView;
 
@@ -13,6 +16,7 @@ public class CustomerView extends View{
 
     public CustomerView() {
         super();
+        setStyles();
     }
 
     public void initComponents(){
@@ -25,14 +29,36 @@ public class CustomerView extends View{
         priceLabel.setFont(new Font(20.0));
         productTable = new ProductTableView();
         cartTable = new CartTableView();
-        scene = new Scene(layout);
+        titleText = new Text(TITLE_TEXT);
+        borderpane = new BorderPane();
+
+        scene = new Scene(borderpane);
         scene.getStylesheets().add("/stylesheets/stylesheets.css");
     }
 
     public void layoutComponents(){
-    	VBox cart = new VBox();
+        //create container boxes
+    	VBox cart = new VBox(10);
+    	VBox buttons = new VBox(20);
+    	VBox title = new VBox();
+
+        title.getStyleClass().add("title-background");
+
+    	title.getChildren().add(titleText);
+    	buttons.getChildren().addAll(addButton, removeButton, checkoutButton, backButton);
     	cart.getChildren().addAll(cartTable, priceLabel);
-        layout.getChildren().addAll(productTable, cart, addButton, removeButton, checkoutButton, backButton);
+        layout.getChildren().addAll(productTable, cart, buttons);
+
+        borderpane.setCenter(layout);
+        borderpane.setTop(title);
+
+        layout.setAlignment(Pos.CENTER);
+        layout.setSpacing(20);
+    }
+
+    public void setStyles(){
+        titleText.getStyleClass().add("title-text");
+
     }
 
     /**
@@ -134,6 +160,7 @@ public class CustomerView extends View{
         return cartTable;
     }
 
+    private BorderPane borderpane;
     private HBox layout;
     private Button backButton;
     private Button addButton;
@@ -142,4 +169,6 @@ public class CustomerView extends View{
     private Label priceLabel;
     private ProductTableView productTable;
     private CartTableView cartTable;
+    private Text titleText;
+    private final String TITLE_TEXT = "Shop";
 }
