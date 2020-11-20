@@ -54,11 +54,38 @@ public class AdminController extends Controller {
             String description = adminView.getAddProductBox().getDescriptionField().getText();
 
              //check for duplicate id product
-            Product product2 = inventory.getProduct(Integer.parseInt(productId));
+            int id = -1;
+            try {
+            	id = Integer.parseInt(productId);
+            }
+            catch(NumberFormatException nfe1) {
+            	AlertBox alertbox = new AlertBox("Error", "Please input integers for productId and make sure all fields are filled out");
+                alertbox.getCloseButton().setOnAction(ev ->{
+                    alertbox.getWindow().close();
+                });
+                alertbox.display();
+            }
+            if(id != -1) {
+            Product product2 = inventory.getProduct(id);
             if(product2 == null){
+            	try {
             	 addProduct(name, price, type, quantity, description, productId);
-
                  clearProductBox();
+            	}
+            	catch(NumberFormatException nfe) {
+            		AlertBox alertbox = new AlertBox("Error", "Please input integers for quantity and decimal value for price");
+                    alertbox.getCloseButton().setOnAction(ev ->{
+                        alertbox.getWindow().close();
+                    });
+                    alertbox.display();
+            	}
+            	catch(NullPointerException npe) {
+            		AlertBox alertbox = new AlertBox("Error", "Please fill out all fields");
+                    alertbox.getCloseButton().setOnAction(ev ->{
+                        alertbox.getWindow().close();
+                    });
+                    alertbox.display();
+            	}
             } else{
                 AlertBox alertbox = new AlertBox("Sorry", "  This Product ID: " + productId +" already exist. "
                 		+ "\n  maybe, consider editing the product  ");
@@ -66,6 +93,7 @@ public class AdminController extends Controller {
                     alertbox.getWindow().close();
                 });
                 alertbox.display();
+            }
             }
 
             adminView.getProductTable().setInventory(inventory);
@@ -82,19 +110,50 @@ public class AdminController extends Controller {
             String description = adminView.getAddProductBox().getDescriptionField().getText();
 
             //TODO error checking for parse int
-            Product product = inventory.getProduct(Integer.parseInt(productId));
+            int id = -1;
+            try {
+            	id = Integer.parseInt(productId);
+            }
+            catch(NumberFormatException nfe1) {
+            	AlertBox alertbox = new AlertBox("Error", "Please input integers for productId and make sure all fields are filled out");
+                alertbox.getCloseButton().setOnAction(ev ->{
+                    alertbox.getWindow().close();
+                });
+                alertbox.display();
+            }
+            if(id != -1) {
+            Product product = inventory.getProduct(id);
             if(product != null){
-                product.setName(name);
-                product.setPrice(Float.parseFloat(price));
-                product.setType(type);
-                product.setQuantity(Integer.parseInt(quantity));
-                product.setDescription(description);
+            	try {
+            		float f = Float.parseFloat(price);
+            		int i = Integer.parseInt(quantity);
+            		product.setName(name);
+            		product.setPrice(f);
+            		product.setType(type);
+            		product.setQuantity(i);
+            		product.setDescription(description);
+            	}
+            	catch(NumberFormatException nfe) {
+            		AlertBox alertbox = new AlertBox("Error", "Please input integers for productId and quantity and decimal value for price");
+                    alertbox.getCloseButton().setOnAction(ev ->{
+                        alertbox.getWindow().close();
+                    });
+                    alertbox.display();
+            	}
+            	catch(NullPointerException npe) {
+            		AlertBox alertbox = new AlertBox("Error", "Please fill out all fields");
+                    alertbox.getCloseButton().setOnAction(ev ->{
+                        alertbox.getWindow().close();
+                    });
+                    alertbox.display();
+            	}
             } else{
                 AlertBox alertbox = new AlertBox("Error", "No such product exists with \n Product ID: " + productId);
                 alertbox.getCloseButton().setOnAction(event ->{
                     alertbox.getWindow().close();
                 });
                 alertbox.display();
+            }
             }
 
             adminView.getProductTable().setInventory(inventory);
