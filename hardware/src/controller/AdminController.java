@@ -11,6 +11,10 @@ import view.AlertBox;
 
 public class AdminController extends Controller {
 
+    /**
+     * Constructor
+     * @param shopData -
+     */
     public AdminController(ShopData shopData) {
         this.shopData = shopData;
         this.inventory = shopData.getInventory();

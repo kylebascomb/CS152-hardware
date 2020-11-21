@@ -1,6 +1,6 @@
 
 .root{
-    -fx-background-color: #909090 ;
+    -fx-background-color: #F8F8F8 ;
 }
 
 .table-view{
@@ -13,12 +13,12 @@
 
 
 .table-view .column-header-background{
-    -fx-background-color: linear-gradient(#131313 0%, #424141 100%);
+    -fx-background-color: linear-gradient(#DEDEDE 0%, #F8F8F8 100%);
 }
 
 .table-view .column-header-background .label{
     -fx-background-color: transparent;
-    -fx-text-fill: white;
+    -fx-text-fill: black;
 }
 
 .table-view .column-header {
@@ -26,17 +26,17 @@
 }
 
 .table-view .table-cell{
-    -fx-text-fill: white;
+    -fx-text-fill: black;
 }
 
 .table-row-cell{
-    -fx-background-color: -fx-table-cell-border-color, #616161;
+    -fx-background-color: -fx-table-cell-border-color, #F8F8F8;
     -fx-background-insets: 0, 0 0 1 0;
     -fx-padding: 0.0em; /* 0 */
 }
 
 .table-row-cell:odd{
-    -fx-background-color: -fx-table-cell-border-color, #424242;
+    -fx-background-color: -fx-table-cell-border-color, #DEDEDE;
     -fx-background-insets: 0, 0 0 1 0;
     -fx-padding: 0.0em; /* 0 */
 }
@@ -66,11 +66,11 @@
 
 .menu-bar{
     -fx-background-color: transparent;
-    -fx-text-fill: white;
+    -fx-text-fill: black;
 }
 
 .menu-bar .label{
-    -fx-text-fill: white;
+    -fx-text-fill: black;
     -fx-font-size: 18px;
 }
 
@@ -91,22 +91,22 @@
 .title-text{
     -fx-font: 42px Tahoma;
     -fx-text-alignment: center;
-    -fx-text-fill: white;
-    -fx-fill: white;
+    -fx-text-fill: black;
+    -fx-fill: black;
 }
 .title-background{
-    -fx-background-color: linear-gradient(#494949  0%, #6B6B6B 100%);
+    -fx-background-color: linear-gradient(#DEDEDE   0%, #F8F8F8 100%);
     -fx-alignment: center;
 }
 
 .label{
     -fx-font-size: 16;
-    -fx-text-fill: white;
+    -fx-text-fill: black;
 }
 
 .button{
     -fx-background-color: transparent;
-    -fx-text-fill: white;
+    -fx-text-fill: black;
     -fx-border-width: 1;
-    -fx-border-color:white;
+    -fx-border-color:blue;
 }
