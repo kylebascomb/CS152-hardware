@@ -44,7 +44,7 @@ public class CustomerController extends Controller {
         	inputBox.getConfirmButton().setOnAction(event ->{
                 try {
                 	int num = Integer.parseInt(inputBox.getNumber().getText());
-                	if(num < 0) {
+                	if(num <= 0) {
                 		AlertBox alertbox = new AlertBox("Error", "Please enter a positive number");
                         alertbox.getCloseButton().setOnAction(ev ->{
                             alertbox.getWindow().close();

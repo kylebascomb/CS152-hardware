@@ -131,11 +131,20 @@ public class AdminController extends Controller {
             	try {
             		float f = Float.parseFloat(price);
             		int i = Integer.parseInt(quantity);
-            		product.setName(name);
-            		product.setPrice(f);
-            		product.setType(type);
-            		product.setQuantity(i);
-            		product.setDescription(description);
+            		if(f >= 0 && i >= 0){
+                        product.setName(name);
+                        product.setPrice(f);
+                        product.setType(type);
+                        product.setQuantity(i);
+                        product.setDescription(description);
+                    } else{
+                        AlertBox alertbox = new AlertBox("Error", "Please make sure all numbers are positive.");
+                        alertbox.getCloseButton().setOnAction(ev ->{
+                            alertbox.getWindow().close();
+                        });
+                        alertbox.display();
+                    }
+
             	}
             	catch(NumberFormatException nfe) {
             		AlertBox alertbox = new AlertBox("Error", "Please input integers for productId and quantity and decimal value for price");
@@ -227,7 +236,15 @@ public class AdminController extends Controller {
     	Integer trueId = Integer.parseInt(productId);
         Float truePrice = Float.parseFloat(price);
         Integer trueQuantity = Integer.parseInt(quantity);
-        inventory.addProduct(new Product(name, truePrice, trueQuantity, description, type, trueId));
+        if(truePrice >= 0 && trueQuantity >= 0 && trueId > 0) {
+            inventory.addProduct(new Product(name, truePrice, trueQuantity, description, type, trueId));
+        } else{
+            AlertBox alertbox = new AlertBox("Error", "Please make sure all numbers are positive.");
+            alertbox.getCloseButton().setOnAction(event ->{
+                alertbox.getWindow().close();
+            });
+            alertbox.display();
+        }
     }
 
     public void initTable(){

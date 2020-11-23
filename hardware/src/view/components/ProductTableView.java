@@ -40,12 +40,12 @@ public class ProductTableView extends TableView {
         quantityColumn = new TableColumn<>("Quantity");
         descriptionColumn = new TableColumn<>("Description");
 
-        nameColumn.setMinWidth(20);
+        nameColumn.setMinWidth(100);
         productIdColumn.setMinWidth(20);
         priceColumn.setMinWidth(20);
-        typeColumn.setMinWidth(20);
+        typeColumn.setMinWidth(50);
         quantityColumn.setMinWidth(20);
-        descriptionColumn.setMinWidth(20);
+        descriptionColumn.setMinWidth(200);
 
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         productIdColumn.setCellValueFactory(new PropertyValueFactory<>("productId"));
