@@ -8,9 +8,17 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import model.Receipt;
 import model.Report;
 
-
+/**
+ * 
+ * Table to display the report
+ *
+ */
 public class ReportTableView extends TableView {
 
+	/**
+	 * constructor
+	 * @param report report to display
+	 */
     public ReportTableView(Report report) {
         super();
         this.setColumnResizePolicy(CONSTRAINED_RESIZE_POLICY);
@@ -21,6 +29,9 @@ public class ReportTableView extends TableView {
         fillTable();
     }
 
+    /**
+     * constructor for empty table
+     */
     public ReportTableView() {
         super();
         this.setColumnResizePolicy(CONSTRAINED_RESIZE_POLICY);
@@ -29,6 +40,9 @@ public class ReportTableView extends TableView {
         createColumns();
     }
 
+    /**
+     * makes all the columns of the table
+     */
     private void createColumns() {
         titleColumn = new TableColumn<>();
 
@@ -40,23 +54,40 @@ public class ReportTableView extends TableView {
         titleColumn.setText("Order History");
     }
 
+    /**
+     * fills table with items 
+     */
     private void fillTable(){
         this.getItems().clear();
         this.getItems().addAll(observableReport);
     }
 
+    /**
+     * add time column
+     */
     public void addTimeColumn(){
         titleColumn.getColumns().add(timeColumn);
     }
 
+    /**
+     * removes time column
+     */
     public void removeTimeColumn(){
         titleColumn.getColumns().remove(timeColumn);
     }
 
+    /**
+     * returns report
+     * @return report
+     */
     public Report getReport() {
         return report;
     }
 
+    /**
+     * sets report
+     * @param report new report to display
+     */
     public void setReport(Report report) {
         this.report = report;
         this.observableReport=FXCollections.observableArrayList(report.getReport());
