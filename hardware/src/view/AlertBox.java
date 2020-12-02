@@ -9,7 +9,7 @@ import javafx.geometry.*;
 /**
  * 
  * Box for alerts that must be addressed to continue
- *
+ *or will throw error messages when the conditions are not met.
  */
 public class AlertBox 
 {
