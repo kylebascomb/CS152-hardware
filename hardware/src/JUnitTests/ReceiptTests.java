@@ -11,16 +11,16 @@ import model.Cart;
 public class ReceiptTests {
 
 	public void setup() {
+		
 	}
-	
-	
+		
 	@Before
 	public void init() {
 		
 	}
 	
 	@Test
-	public void test() {
+	public void computeTimeStampTest() {
 		
 	}
 	

@@ -2,7 +2,6 @@ package controller;
 
 import javafx.scene.Node;
 import javafx.stage.Stage;
-import model.Inventory;
 import model.ShopData;
 import view.StartupView;
 
@@ -10,7 +9,7 @@ import java.io.*;
 
 /**
  * 
- * Controller that controls start up view and gives contrl to subsequent views
+ * Controller that controls start up view and gives control to subsequent views
  *
  */
 public class StartupController extends Controller{
