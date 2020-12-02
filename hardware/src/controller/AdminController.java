@@ -9,11 +9,16 @@ import model.*;
 import view.AdminView;
 import view.AlertBox;
 
+/**
+ * 
+ * Class responsible for communicating between the admin views and the model
+ *
+ */
 public class AdminController extends Controller {
 
     /**
      * Constructor
-     * @param shopData
+     * @param shopData - data passed around controllers
      */
     public AdminController(ShopData shopData) {
         this.shopData = shopData;
@@ -23,13 +28,12 @@ public class AdminController extends Controller {
         view = new AdminView();
         adminView = (AdminView)view;
 
-
         initControllers();
-
-        //TESTING
-        System.out.print(inventory.getSize());
     }
 
+    /**
+     * initializes all the components
+     */
     public void initControllers(){
         initTable();
         initMenu();
@@ -47,6 +51,9 @@ public class AdminController extends Controller {
 
     }
 
+    /**
+     * Initializes the components of the inventory section of admin view
+     */
     public void initInventoryControllers(){
         // add Product
         adminView.getAddProductBox().getAddButton().setOnAction(e ->{
@@ -57,7 +64,7 @@ public class AdminController extends Controller {
             String quantity = adminView.getAddProductBox().getQuantityField().getText();
             String description = adminView.getAddProductBox().getDescriptionField().getText();
 
-             //check for duplicate id product
+             //checks for null or noninteger values where they shouldn't be
             int id = -1;
             try {
             	id = Integer.parseInt(productId);
@@ -70,12 +77,15 @@ public class AdminController extends Controller {
                 alertbox.display();
             }
             if(id != -1) {
+            //check for duplicate product in inventory
             Product product2 = inventory.getProduct(id);
             if(product2 == null){
+            	///if no duplicate add product
             	try {
             	 addProduct(name, price, type, quantity, description, productId);
                  clearProductBox();
             	}
+            	//check for non integers or floats where they should be
             	catch(NumberFormatException nfe) {
             		AlertBox alertbox = new AlertBox("Error", "Please input integers for quantity and decimal value for price");
                     alertbox.getCloseButton().setOnAction(ev ->{
@@ -83,6 +93,7 @@ public class AdminController extends Controller {
                     });
                     alertbox.display();
             	}
+            	//check for null values
             	catch(NullPointerException npe) {
             		AlertBox alertbox = new AlertBox("Error", "Please fill out all fields");
                     alertbox.getCloseButton().setOnAction(ev ->{
@@ -91,6 +102,7 @@ public class AdminController extends Controller {
                     alertbox.display();
             	}
             } else{
+            	//duplicate item can't be added again
                 AlertBox alertbox = new AlertBox("Sorry", "  This Product ID: " + productId +" already exist. "
                 		+ "\n  maybe, consider editing the product  ");
                 alertbox.getCloseButton().setOnAction(event ->{
@@ -99,7 +111,7 @@ public class AdminController extends Controller {
                 alertbox.display();
             }
             }
-
+            //update inventory
             adminView.getProductTable().setInventory(inventory);
         });
 
@@ -113,11 +125,12 @@ public class AdminController extends Controller {
             String quantity = adminView.getAddProductBox().getQuantityField().getText();
             String description = adminView.getAddProductBox().getDescriptionField().getText();
 
-            //TODO error checking for parse int
+            //check for product in inventory
             int id = -1;
             try {
             	id = Integer.parseInt(productId);
             }
+            //check for bad values in productId
             catch(NumberFormatException nfe1) {
             	AlertBox alertbox = new AlertBox("Error", "Please input integers for productId and make sure all fields are filled out");
                 alertbox.getCloseButton().setOnAction(ev ->{
@@ -126,11 +139,14 @@ public class AdminController extends Controller {
                 alertbox.display();
             }
             if(id != -1) {
+            //check for product in inventory
             Product product = inventory.getProduct(id);
             if(product != null){
+            	//if item exists change values
             	try {
             		float f = Float.parseFloat(price);
             		int i = Integer.parseInt(quantity);
+            		//checks for negative numbers where there shouldn't be
             		if(f >= 0 && i >= 0){
                         product.setName(name);
                         product.setPrice(f);
@@ -146,6 +162,7 @@ public class AdminController extends Controller {
                     }
 
             	}
+            	//catch mismatch of data type
             	catch(NumberFormatException nfe) {
             		AlertBox alertbox = new AlertBox("Error", "Please input integers for productId and quantity and decimal value for price");
                     alertbox.getCloseButton().setOnAction(ev ->{
@@ -161,6 +178,7 @@ public class AdminController extends Controller {
                     alertbox.display();
             	}
             } else{
+            	//if no product then it can't be edited
                 AlertBox alertbox = new AlertBox("Error", "No such product exists with \n Product ID: " + productId);
                 alertbox.getCloseButton().setOnAction(event ->{
                     alertbox.getWindow().close();
@@ -176,6 +194,7 @@ public class AdminController extends Controller {
         adminView.getAddProductBox().getDeleteButton().setOnAction(e ->{
             String productId = adminView.getAddProductBox().getproductIdField().getText();
             Product product = inventory.getProduct(Integer.parseInt(productId));
+            //if product is selected prompt user to understand gravity fo situation
             if(product != null) {
                 AlertBox alertBox = new AlertBox("Product Deletion", "Warning, you are about to permanently delete a product");
 
@@ -186,13 +205,14 @@ public class AdminController extends Controller {
 
                 alertBox.display();
             } else {
+            	//if no product found it can't be deleted
                 AlertBox alertbox = new AlertBox("Error", "No such product exists with \n Product ID: " + productId);
                 alertbox.getCloseButton().setOnAction(event ->{
                     alertbox.getWindow().close();
                 });
                 alertbox.display();
             }
-
+            //up[date inventory on view
             adminView.getProductTable().setInventory(inventory);
         });
 
@@ -212,7 +232,11 @@ public class AdminController extends Controller {
         });
     }
 
+    /**
+     * initializes controllers for report section of admin view
+     */
     public void initReportControllers(){
+    	//make report table and allow clicking gto pop up detailed view
         adminView.getReportTable().setRowFactory(e ->{
             TableRow<Receipt> row = new TableRow<>();
             row.setOnMouseClicked(event ->{
@@ -222,6 +246,9 @@ public class AdminController extends Controller {
         });
     }
 
+    /**
+     * clears input box 
+     */
     public void clearProductBox(){
         adminView.getAddProductBox().getNameField().clear();
         adminView.getAddProductBox().getproductIdField().clear();
@@ -231,6 +258,15 @@ public class AdminController extends Controller {
         adminView.getAddProductBox().getDescriptionField().clear();
     }
 
+    /**
+     * Adds product with given attributes to the inventory mdel
+     * @param name
+     * @param price
+     * @param type
+     * @param quantity 
+     * @param description
+     * @param productId
+     */
     public void addProduct(String name, String price, String type, String quantity, String description, String productId){
         //TODO error checking
     	Integer trueId = Integer.parseInt(productId);
@@ -247,6 +283,9 @@ public class AdminController extends Controller {
         }
     }
 
+    /**
+     * initializes all the tables in the view
+     */
     public void initTable(){
         //Product Table
         adminView.getProductTable().setInventory(inventory);
@@ -270,6 +309,9 @@ public class AdminController extends Controller {
         adminView.getCartTable().addDescriptionColumn();
     }
 
+    /**
+     * initializes controllers for the menu to switch between views
+     */
     public void initMenu(){
         adminView.getInventoryMenuItem().setOnAction(e ->{
             adminView.getLayout().setCenter(adminView.getInventoryBox());
@@ -279,10 +321,8 @@ public class AdminController extends Controller {
         });
 
     }
-    
-    public Inventory getInventory() {
-    	return inventory;
-    }
+
+
 
     private Product selectedProduct;
     private AdminView adminView;
