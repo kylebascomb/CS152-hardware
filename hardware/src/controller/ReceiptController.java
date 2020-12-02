@@ -5,8 +5,18 @@ import java.time.LocalDateTime;
 import model.*;
 import view.ReceiptView;
 
+/**
+ * 
+ * Controller that communicates between receipt and receipt view
+ *
+ */
 public class ReceiptController extends Controller {
 	
+	/**
+	 * Constructor
+	 * @param shopData data to be passed through application
+	 * @param cart the cart that was purchased
+	 */
 	public ReceiptController(ShopData shopData, Cart cart) {
 		this.shopData = shopData;
 		this.inventory = shopData.getInventory();
@@ -20,11 +30,16 @@ public class ReceiptController extends Controller {
 		initControllers();
 	}
 	
+	/**
+	 * initializes all button controllers
+	 */
 	private void initControllers() {
+		//go back to customer screen
 		receiptView.getBackButton().setOnAction(e ->{
             passControl(new CustomerController(inventory, cart), e);
         });
 		
+		//confirm purchase
 		receiptView.getSaveButton().setOnAction(e ->{
 			//Saves all data
             StartupController startupController = new StartupController(shopData);
@@ -37,6 +52,9 @@ public class ReceiptController extends Controller {
 		
 	}
 
+	/**
+	 * initializes the table and labels 
+	 */
 	private void initComponents() {
 		receiptView.getCartTable().setInventory(cart);
 		receiptView.getCartTable().addNameColumn();
