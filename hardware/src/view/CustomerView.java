@@ -12,13 +12,24 @@ import javafx.scene.text.Text;
 import view.components.CartTableView;
 import view.components.ProductTableView;
 
+/**
+ * 
+ * View for customer screen 
+ *
+ */
 public class CustomerView extends View{
 
+	/**
+	 * Constructor
+	 */
     public CustomerView() {
         super();
         setStyles();
     }
 
+    /**
+     * initializes components
+     */
     public void initComponents(){
         layout = new HBox();
         backButton = new Button("Back");
@@ -36,6 +47,9 @@ public class CustomerView extends View{
         scene.getStylesheets().add("/stylesheets/stylesheets.css");
     }
 
+    /**
+     * puts and layouts components in window
+     */
     public void layoutComponents(){
         //create container boxes
     	VBox cart = new VBox(10);
@@ -56,6 +70,9 @@ public class CustomerView extends View{
         layout.setSpacing(20);
     }
 
+    /**
+     * assigns given CSS styles to view
+     */
     public void setStyles(){
         titleText.getStyleClass().add("title-text");
 
