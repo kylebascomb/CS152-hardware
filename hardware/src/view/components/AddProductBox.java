@@ -7,14 +7,24 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
+/**
+ * 
+ * Fields for editing and adding products in admin screen
+ *
+ */
 public class AddProductBox extends VBox {
 
-
+	/**
+	 * Constructor
+	 */
     public AddProductBox() {
         initComponents();
         layoutComponents();
     }
 
+    /**
+     * Initializes components
+     */
     public void initComponents(){
         nameLabel = new Label("Product");
         productIdLabel = new Label("Product ID");
@@ -36,6 +46,9 @@ public class AddProductBox extends VBox {
         deleteButton = new Button("Delete");
     }
 
+    /**
+     * layouts and formats components
+     */
     public void layoutComponents(){
 
         nameLabel.setMinWidth(84);
@@ -55,19 +68,34 @@ public class AddProductBox extends VBox {
         this.getChildren().addAll(nameBox, idBox, priceBox, typeBox, quantityBox, descriptionBox, buttonBox);
     }
 
-
+    /**
+     * get delete button
+     * @return delete button
+     */
     public Button getDeleteButton() {
         return deleteButton;
     }
 
+    /**
+     * sets delete button
+     * @param deleteButton new delete button
+     */
     public void setDeleteButton(Button deleteButton) {
         this.deleteButton = deleteButton;
     }
 
+    /**
+     * gets edit button
+     * @return edit button
+     */
     public Button getEditButton() {
         return editButton;
     }
 
+    /**
+     * rets edit button
+     * @param editButton new edit button
+     */
     public void setEditButton(Button editButton) {
         this.editButton = editButton;
     }
