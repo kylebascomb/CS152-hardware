@@ -8,9 +8,17 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import model.Inventory;
 import model.Product;
 
+/**
+ * 
+ * Display for product table
+ *
+ */
 public class ProductTableView extends TableView {
 
-
+	/**
+	 * Constructor
+	 * @param inventory inventory to display
+	 */
     public ProductTableView(Inventory inventory) {
         super();
         this.setColumnResizePolicy(CONSTRAINED_RESIZE_POLICY);
@@ -23,6 +31,9 @@ public class ProductTableView extends TableView {
         fillTable();
     }
 
+    /**
+     * Constructor for empty table
+     */
     public ProductTableView() {
         super();
         this.setColumnResizePolicy(CONSTRAINED_RESIZE_POLICY);
@@ -30,6 +41,9 @@ public class ProductTableView extends TableView {
         createColumns();
     }
 
+    /**
+     * Adds all columns to table
+     */
     public void createColumns(){
         titleColumn = new TableColumn<>();
 
@@ -59,6 +73,9 @@ public class ProductTableView extends TableView {
         titleColumn.setText("Products");
     }
 
+    /**
+     * fills table with items from data
+     */
     public void fillTable(){
         this.getItems().clear();
         this.getItems().addAll(observableInventory);
