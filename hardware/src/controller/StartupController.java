@@ -8,8 +8,16 @@ import view.StartupView;
 
 import java.io.*;
 
+/**
+ * 
+ * Controller that controls start up view and gives contrl to subsequent views
+ *
+ */
 public class StartupController extends Controller{
 
+	/**
+	 * Base constructor for fresh app
+	 */
     public StartupController() {
         this.view = new StartupView();
         startupView = (StartupView)view;
@@ -20,6 +28,10 @@ public class StartupController extends Controller{
         initControllers();
     }
 
+    /**
+     * Constructor that uses saved data
+     * @param shopData saved data 
+     */
     public StartupController(ShopData shopData){
         this.shopData = shopData;
 
@@ -28,16 +40,22 @@ public class StartupController extends Controller{
 
         initControllers();
     }
-
+    
+    /**
+     * initializes button controllers
+     */
     public void initControllers(){
+    	//go to admin view
         startupView.getAdminButton().setOnAction(e ->{
             passControl(new AdminController(shopData), e);
         });
 
+        //go to customer view
         startupView.getCustomerButton().setOnAction(e ->{
             passControl(new CustomerController(shopData), e);
         });
 
+        //save and quit application
         startupView.getSaveButton().setOnAction(e ->{
             saveAllData();
             Stage primaryStage = (Stage)((Node)e.getSource()).getScene().getWindow();
@@ -45,7 +63,9 @@ public class StartupController extends Controller{
         });
     }
 
-
+    /**
+     * Serializes the shop data
+     */
     public void saveAllData(){
         String filename = this.FILE_PATH;
 
@@ -73,6 +93,10 @@ public class StartupController extends Controller{
         }
     }
 
+    /**
+     * deserializes the data
+     * @return
+     */
     public boolean getAllData(){
         String filename = FILE_PATH;
         try
