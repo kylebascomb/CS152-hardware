@@ -82,8 +82,6 @@ public class StartupController extends Controller{
             out.close();
             file.close();
 
-            System.out.println("Object has been serialized");
-
         }
         catch(IOException ex)
         {
@@ -110,8 +108,6 @@ public class StartupController extends Controller{
 
             in.close();
             file.close();
-
-            System.out.println("Object has been deserialized ");
         }
 
         catch(IOException ex)
