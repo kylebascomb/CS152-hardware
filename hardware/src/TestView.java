@@ -6,7 +6,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
-
+//Displya the view
 
 public class TestView {
 
@@ -80,13 +80,15 @@ public class TestView {
 
     /**
      * Setter for scene
-     *
+     *The setting of the scene is filled as specified by the fill property
      * @param scene - scene
      */
     public void setScene(Scene scene) {
         this.scene = scene;
     }
-
+ /**
+     * Declare local private variables
+     */
     private StackPane layout;
     private HBox horizontalLayout;
     private Button lButton;
