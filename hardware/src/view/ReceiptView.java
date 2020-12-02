@@ -11,13 +11,24 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import view.components.ProductTableView;
 
+/**
+ * 
+ * View for receipt screen
+ *
+ */
 public class ReceiptView extends View {
 	
+	/**
+	 * Constructor
+	 */
 	public ReceiptView() {
 		super();
 		setStyles();
 	}
 	
+	/**
+	 * initialize components
+	 */
 	public void initComponents(){
         layout = new VBox();
         total = new Label("Total:    $");
@@ -35,6 +46,9 @@ public class ReceiptView extends View {
         scene.getStylesheets().add("/stylesheets/stylesheets.css");
     }
 
+	/**
+	 * layout components in format
+	 */
     public void layoutComponents(){
 	    VBox title = new VBox();
     	HBox table = new HBox(cartTable);
@@ -50,30 +64,57 @@ public class ReceiptView extends View {
         borderPane.setTop(title);
     }
 
+    /**
+     * sets style to given CSS 
+     */
     public void setStyles(){
 	    titleText.getStyleClass().add("title-text");
     }
     
+    /**
+     * return layout
+     * @return layout
+     */
     public VBox getLayout() {
     	return layout;
     }
     
+    /**
+     * return total rice
+     * @return total price
+     */
     public Label getTotal() {
     	return total;
     }
     
+    /**
+     * return datetime
+     * @return datetime
+     */
     public Label getDateTime() {
     	return datetime;
     }
     
+    /**
+     * return back button
+     * @return back button
+     */
     public Button getBackButton() {
     	return backButton;
     }
     
+    /**
+     * return save button
+     * @return save button
+     */
     public Button getSaveButton() {
     	return saveButton;
     }
     
+    /**
+     * return cart table
+     * @return cart table
+     */
     public ProductTableView getCartTable() {
     	return cartTable;
     }
