@@ -13,7 +13,7 @@ public class AdminController extends Controller {
 
     /**
      * Constructor
-     * @param shopData -
+     * @param shopData
      */
     public AdminController(ShopData shopData) {
         this.shopData = shopData;
@@ -279,8 +279,10 @@ public class AdminController extends Controller {
         });
 
     }
-
-
+    
+    public Inventory getInventory() {
+    	return inventory;
+    }
 
     private Product selectedProduct;
     private AdminView adminView;

@@ -26,7 +26,7 @@ public class Product implements Serializable {
     /**
      * Setter for name
      *
-     * @param name - name
+     * @param name
      */
     public void setName(String name) {
         this.name = name;
