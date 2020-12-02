@@ -7,7 +7,7 @@ import org.junit.Test;
 import model.Inventory;
 import model.Product;
 
-public class InventoryTest {
+public class InventoryTests {
 
 	public void setup() {
 		name = "Box Nails";
