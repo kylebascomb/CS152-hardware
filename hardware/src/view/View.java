@@ -3,18 +3,31 @@ package view;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 
+/**
+ * 
+ * Basic View class
+ *
+ */
 public class View {
 
-
+	/**
+	 * Constructor
+	 */
     public View() {
         initComponents();
         layoutComponents();
     }
 
+    /**
+     * initialize components
+     */
     public void initComponents(){
 
     }
 
+    /**
+     * layout components
+     */
     public void layoutComponents(){
 
     }
