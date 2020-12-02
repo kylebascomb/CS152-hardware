@@ -10,7 +10,17 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+/**
+ * 
+ * Box for receiving input
+ *
+ */
 public class InputBox {
+	/**
+	 * Constructor
+	 * @param title title fo box
+	 * @param message messgae of box
+	 */
 	  public InputBox(String title, String message ){
 		  this.title = title;
 		  this.message = message;
@@ -19,6 +29,9 @@ public class InputBox {
 		  number = new TextField();
 	  }
 	  
+	  /**
+	   * formats and displays box
+	   */
 	  public void display(){
 		    window = new Stage();
 		    
@@ -48,39 +61,74 @@ public class InputBox {
 		  }
 
 
-
+	  /**
+	   * return confirm button
+	   * @return confirm button
+	   */
 	  public Button getConfirmButton() {
 		    return confirmButton;
 		  }
 
+	  /**
+	   * set close button
+	   * @param closeButton new close button
+	   */
 	  public void setConfirmButton(Button closeButton) {
 		    this.confirmButton = closeButton;
 		  }
 
+	  /**
+	   * return title
+	   * @return title
+	   */
 	  public String getTitle() {
 		    return title;
 		  }
 
+	  /**
+	   * sets title
+	   * @param title new title
+	   */
 	  public void setTitle(String title) {
 		    this.title = title;
 		  }
 
+	  /**
+	   * returns message
+	   * @return message
+	   */
 	  public String getMessage() {
 		    return message;
 		  }
 
+	  /**
+	   * sets message
+	   * @param message new message
+	   */
 	  public void setMessage(String message) {
 		    this.message = message;
 		  }
 
+	  /**
+	   * return window
+	   * @return window
+	   */
 	  public Stage getWindow() {
 		    return window;
 		  }
 
+	  /**
+	   * sets window
+	   * @param window new window
+	   */
 	  public void setWindow(Stage window) {
 		    this.window = window;
 		  }
 	  
+	  /**
+	   * return number
+	   * @return number
+	   */
 	  public TextField getNumber() {
 		  return number;
 	  }
