@@ -6,13 +6,23 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 
+/**
+ * 
+ * View for StartUp sreen
+ *
+ */
 public class StartupView extends View{
 
-
+	/**
+	 * Constructor
+	 */
     public StartupView() {
         super();
     }
 
+    /**
+     * initializes components
+     */
     public void initComponents(){
         layout = new StackPane();
         horizontalLayout = new HBox(30);
@@ -23,6 +33,9 @@ public class StartupView extends View{
         scene.getStylesheets().add("/stylesheets/stylesheets.css");
     }
 
+    /**
+     * layouts and formats components
+     */
     public void layoutComponents(){
         horizontalLayout.getChildren().addAll(adminButton, customerButton, saveButton);
         horizontalLayout.setAlignment(Pos.CENTER);
